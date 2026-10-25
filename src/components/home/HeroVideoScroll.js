@@ -61,10 +61,20 @@ export default function HeroVideoScroll() {
   };
 
   // Preload frames based on current device aspect ratio (Desktop vs Mobile)
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobileDevice(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   useEffect(() => {
     let active = true;
-    const isMobile = window.innerWidth <= 768;
-    const folder = isMobile ? "/hero-frames-mobile" : "/hero-frames";
+    const folder = isMobileDevice ? "/hero-frames-mobile" : "/hero-frames";
     const images = [];
     imagesRef.current = images;
 
@@ -119,7 +129,7 @@ export default function HeroVideoScroll() {
       active = false;
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [isMobileDevice]);
 
   // Update canvas on scroll
   useEffect(() => {
