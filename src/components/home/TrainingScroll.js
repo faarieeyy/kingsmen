@@ -9,19 +9,19 @@ const stages = [
     id: "01",
     title: "SELECTION",
     desc: "We recruit our personnel in accordance with the parameters laid down in our recruitment policy in addition to their individual strengths. This includes education, age, physical fitness and background. All employees are subjected to vigorous vetting processes. Further we carry out thorough verification and background checks on service records of each employee including police verifications etc.",
-    img: "/images/hero.jpg"
+    img: "/group-photos-web/team-security-02.webp"
   },
   {
     id: "02",
     title: "TRAINING",
     desc: "Before deployment, it is mandatory for all Kingsmen (Ind) Services Pvt Ltd personnel to undertake basic security training, which imparts the necessary skills to perform duties at their allotted posts. In addition to lessons on basic guarding skills, they are taught the rudiments of first aid, firefighting and self-defence. The training process is ongoing and progressive throughout the employees career to refresh.",
-    img: "/images/facility.jpg"
+    img: "/group-photos-web/team-group-01.webp"
   },
   {
     id: "03",
     title: "SUPERVISION",
     desc: "We also realize that Supervision is equally important in order to provide quality service. In this regard, we have a strong operation team comprising of managers, field officers and patrolling supervisors who are constantly checking on our assignments and guards. Control room staffed 24 hrs by Hindi and English speaking personnel so that both clients and guards can obtain assistance at any time.",
-    img: "/images/patrol.jpg"
+    img: "/group-photos-web/team-group-02.webp"
   }
 ];
 

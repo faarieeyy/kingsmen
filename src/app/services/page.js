@@ -8,23 +8,84 @@ export const metadata = {
   description: "Explore our complete range of security and facility management services tailored for businesses and residences in Bangalore.",
 };
 
+const serviceCards = [
+  {
+    title: "Security Service",
+    href: "/services/security-service",
+    image: "/group-photos-web/team-security-01.webp",
+    items: [
+      "Corporate offices",
+      "Apartments",
+      "Dark stores, Warehouses, Industry and factory",
+      "Educational Institutions",
+      "Commercial Shops"
+    ],
+    delay: 0.1
+  },
+  {
+    title: "Facility Management & Housekeeping",
+    href: "/services/facility-management",
+    image: "/group-photos-web/team-group-01.webp",
+    items: [
+      "Corporate offices",
+      "Apartments",
+      "Warehouses, Industry and factory",
+      "Educational Institutions",
+      "Commercial Shops"
+    ],
+    delay: 0.2
+  },
+  {
+    title: "Geriatric Service",
+    href: "/services/geriatric-service",
+    image: "/group-photos-web/team-group-02.webp",
+    items: [
+      "Hospitals",
+      "Individual residences",
+      "Old age homes"
+    ],
+    delay: 0.3
+  },
+  {
+    title: "CCTV Services",
+    href: "/services/cctv",
+    image: "/group-photos-web/team-security-02.webp",
+    items: [
+      "Corporate offices",
+      "Apartments"
+    ],
+    delay: 0.4
+  },
+  {
+    title: "Man Power Service",
+    href: "/services/man-power",
+    image: "/group-photos-web/team-group-03.webp",
+    items: [
+      "For Dark stores",
+      "Warehouse",
+      "Industry",
+      "Factories"
+    ],
+    delay: 0.5
+  }
+];
+
 export default function Page() {
   return (
     <>
-      <section className={styles.hero} style={{ minHeight: '60vh' }}>
+      <section className={styles.hero}>
         <div className={styles.heroBackground}>
-          <Image src="/images/patrol.jpg" alt="Our Services" fill style={{ objectFit: "cover" }} priority />
+          <Image src="/group-photos-web/team-security-01.webp" alt="Our Services" fill style={{ objectFit: "cover" }} priority />
         </div>
         <div className="container">
           <div className={styles.heroContent}>
             <FadeIn delay={0.2}>
               <span className={styles.eyebrow}>SERVICES HUB</span>
             </FadeIn>
-            <h1 className={styles.headline}>
-              <FadeIn delay={0.3}><span>Our</span></FadeIn>
-              <FadeIn delay={0.4}><span>Services</span></FadeIn>
-            </h1>
-            <FadeIn delay={0.5}>
+            <FadeIn delay={0.3}>
+              <h1 className={styles.headline}>Our Services</h1>
+            </FadeIn>
+            <FadeIn delay={0.4}>
               <p className={styles.supportCopy}>
                 Explore our complete range of security and facility management services tailored for businesses and residences in Bangalore.
               </p>
@@ -40,34 +101,46 @@ export default function Page() {
         <div className="container">
           <FadeIn y={30}>
             <span className={styles.sectionNumber}>TOTAL SECURITY & DETECTIVE SOLUTIONS</span>
-            <h2 className={styles.introStatement} style={{ marginBottom: '60px' }}>
+            <h2 className={styles.introStatement} style={{ marginBottom: "50px" }}>
               TRAINED. VERIFIED. SUPERVISED.
             </h2>
           </FadeIn>
 
-          <div className={styles.bentoGrid}>
-            <FadeIn delay={0.2} y={30} className={styles.bentoCard}>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '20px', color: 'var(--accent)' }}>Key Features</h3>
-              <ul style={{ listStyle: 'none', fontSize: '1.1rem', display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                <li>• Armed & Unarmed Guarding Services</li>\n                <li>• VIP Mobile Squad & Bodyguards</li>\n                <li>• Security Consultancy & Audits</li>\n                <li>• Integrated Facility Management</li>\n                <li>• Fire Fighting & Karate Training</li>
-              </ul>
-            </FadeIn>
-            
-            <FadeIn delay={0.4} y={30} className={styles.bentoCard}>
-              <p style={{ marginBottom: '15px' }}>
-                Kingsmen offers a comprehensive suite of security and facility management services. Whether you need elite bodyguards, a VIP mobile squad, or integrated housekeeping, we are your single point of contact.
-              </p>
-              <p>
-                Our dual expertise in manpower deployment and facility operations ensures that your premises are not only impeccably secure but also immaculately maintained.
-              </p>
-              <h3 style={{ marginTop: '30px', color: 'var(--accent)', marginBottom: '15px', fontSize: '1.2rem' }}>Our Deployment Process:</h3>
-              <ol style={{ paddingLeft: '20px', fontSize: '1rem', color: 'rgba(255,255,255,0.8)' }}>
-                <li>Comprehensive Site Assessment</li>
-                <li>Customized Deployment Plan</li>
-                <li>Rigorous Verification & Induction</li>
-                <li>Deployment & 24/7 Supervision</li>
-              </ol>
-            </FadeIn>
+          <div className={styles.servicesSplit}>
+            {serviceCards.map((service, idx) => (
+              <Link key={idx} href={service.href} className={styles.serviceCardLink}>
+                <FadeIn delay={service.delay} y={25} className={styles.serviceFadeIn}>
+                  <div className={styles.serviceCard}>
+                    <div className={styles.serviceBg}>
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        style={{ objectFit: "cover" }}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    </div>
+                    <div className={styles.serviceOverlay}></div>
+                    
+                    <div className={styles.hoverArrow} aria-hidden="true">
+                      <span>↗</span>
+                    </div>
+
+                    <div className={styles.serviceContent}>
+                      <h3 className={styles.serviceTitle}>{service.title}</h3>
+                      <ul className={styles.serviceList}>
+                        {service.items.map((item, itemIdx) => (
+                          <li key={itemIdx}>
+                            <span>•</span>
+                            <div>{item}</div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </FadeIn>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

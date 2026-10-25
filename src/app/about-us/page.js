@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import FadeIn from "@/components/animations/FadeIn";
 import styles from "../page.module.css";
+import TeamSection from "@/components/about/TeamSection";
 
 export const metadata = {
   title: "Security Company in Bangalore | About Kingsmen",
@@ -13,7 +14,7 @@ export default function AboutUs() {
     <>
       <section className={styles.hero} style={{ minHeight: '60vh' }}>
         <div className={styles.heroBackground}>
-          <Image src="/images/hero.jpg" alt="About Kingsmen" fill style={{ objectFit: "cover" }} priority />
+          <Image src="/group-photos-web/team-security-01.webp" alt="About Kingsmen" fill style={{ objectFit: "cover" }} priority />
         </div>
         <div className="container">
           <div className={styles.heroContent}>
@@ -58,6 +59,8 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
+
+      <TeamSection showHeader={true} />
     </>
   );
 }

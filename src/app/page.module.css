@@ -1,11 +1,41 @@
-.hero {
-  min-height: 90vh;
+.heroWrapper {
+  height: 250vh; /* Creates scrollable space for the animation on homepage */
   position: relative;
+}
+
+@media (max-width: 768px) {
+  .heroWrapper {
+    height: 160vh; /* Shorter scroll height on mobile so user isn't stuck scrolling endlessly */
+  }
+}
+
+/* Default inner-page hero banner: relative in document flow, normal scroll */
+.hero {
+  position: relative;
+  min-height: 55vh;
   display: flex;
   align-items: center;
   overflow: hidden;
   background-color: var(--navy-deep);
-  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  padding: 150px 0 80px 0;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 48vh;
+    padding: 110px 0 50px 0;
+  }
+}
+
+/* Pinned hero strictly for homepage interactive scroll experience */
+.heroWrapper .hero {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: sticky;
+  top: 0;
+  padding: 0;
 }
 
 .heroBackground {
@@ -16,18 +46,33 @@
   overflow: hidden;
 }
 
+@media (max-width: 768px) {
+  .heroBackground {
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+  }
+}
+
 .heroBackground::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(5, 16, 36, 0.95) 0%, rgba(5, 16, 36, 0.5) 50%, rgba(5, 16, 36, 0.2) 100%);
+  background: linear-gradient(135deg, rgba(5, 16, 36, 0.95) 0%, rgba(5, 16, 36, 0.6) 50%, rgba(5, 16, 36, 0.3) 100%);
 }
 
 .heroContent {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: 900px;
+}
+
+.heroWrapper .heroContent {
   padding-top: 80px;
+}
+
+@media (max-width: 768px) {
+  .heroWrapper .heroContent {
+    padding-top: 60px;
+  }
 }
 
 .eyebrow {
@@ -44,30 +89,59 @@
   display: inline-block;
 }
 
+@media (max-width: 768px) {
+  .eyebrow {
+    font-size: 0.72rem;
+    padding: 4px 12px;
+    letter-spacing: 1.5px;
+    margin-bottom: 16px;
+  }
+}
+
 .headline {
-  font-size: clamp(3rem, 5vw, 6.5rem);
-  line-height: 1.05;
-  margin-bottom: 30px;
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: -1px;
+  letter-spacing: 2px;
+  font-size: clamp(2.2rem, 8vw, 6rem);
+  line-height: 1.15;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  margin-bottom: 14px;
+  word-break: break-word;
 }
 
 .headline span {
-  display: block;
+  display: inline-block;
+  margin-right: 0.35rem;
 }
 
 .supportCopy {
-  font-size: 1.25rem;
-  opacity: 0.8;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.6;
+  opacity: 0.85;
   max-width: 600px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .heroActions {
   display: flex;
-  gap: 20px;
-  align-items: center;
+  gap: 14px;
+  align-items: stretch;
   flex-wrap: wrap;
+}
+
+@media (max-width: 540px) {
+  .heroActions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .heroActions a,
+  .heroActions .secondaryBtn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
 }
 
 .secondaryBtn {
@@ -81,6 +155,10 @@
   letter-spacing: 1.5px;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
 }
 
 .secondaryBtn:hover {
@@ -110,13 +188,22 @@
 }
 
 .bentoCard {
-  background: var(--glass-bg);
-  border: var(--glass-border);
-  border-radius: var(--radius-md);
-  padding: 40px;
-  backdrop-filter: blur(20px);
+  padding: 40px 0;
   position: relative;
-  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .bentoCard {
+    padding: 16px 0;
+  }
+}
+
+.hoverCard {
+  transition: transform 0.3s ease;
+}
+
+.hoverCard:hover {
+  transform: translateY(-5px);
 }
 
 .bentoImage {
@@ -142,14 +229,29 @@
   border-radius: var(--radius-full);
   color: var(--white);
   margin-bottom: 24px;
-  display: inline-block;
+  display: none;
   letter-spacing: 1px;
 }
 
 .introStatement {
-  font-size: clamp(2rem, 3vw, 3.5rem);
-  line-height: 1.1;
-  margin-bottom: 30px;
+  font-size: clamp(1.8rem, 3.5vw, 3.5rem);
+  line-height: 1.15;
+  margin-bottom: 24px;
+}
+
+/* Two-column intro grid used in About, Contact, etc. */
+.introGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .introGrid {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+  }
 }
 
 /* Services Curvy Split */
@@ -159,11 +261,33 @@
   gap: 24px;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 640px) {
   .servicesSplit {
-    grid-template-columns: 1fr 1fr;
-    height: 70vh;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
   }
+}
+
+@media (min-width: 1200px) {
+  .servicesSplit {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+}
+
+.serviceCardLink {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.serviceFadeIn {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .serviceCard {
@@ -173,16 +297,27 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 40px;
-  min-height: 400px;
-  transition: all 0.5s ease;
+  padding: 32px 28px;
+  min-height: 420px;
+  height: 100%;
+  flex: 1;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   border: var(--glass-border);
+  background: rgba(8, 20, 44, 0.7);
+}
+
+@media (max-width: 640px) {
+  .serviceCard {
+    padding: 24px 20px;
+    min-height: 360px;
+    border-radius: var(--radius-md);
+  }
 }
 
 .serviceCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(201, 162, 39, 0.3);
 }
 
 .serviceBg {
@@ -193,29 +328,73 @@
 }
 
 .serviceCard:hover .serviceBg {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 .serviceOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(5, 16, 36, 0.95) 0%, rgba(5, 16, 36, 0.2) 100%);
+  background: linear-gradient(
+    to top,
+    rgba(5, 16, 36, 0.98) 0%,
+    rgba(5, 16, 36, 0.82) 50%,
+    rgba(5, 16, 36, 0.45) 100%
+  );
   z-index: 1;
+  transition: background 0.3s ease;
+}
+
+.serviceCard:hover .serviceOverlay {
+  background: linear-gradient(
+    to top,
+    rgba(5, 16, 36, 0.96) 0%,
+    rgba(5, 16, 36, 0.72) 50%,
+    rgba(5, 16, 36, 0.3) 100%
+  );
 }
 
 .serviceContent {
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
 }
 
 .serviceTitle {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
+  font-size: clamp(1.3rem, 1.8vw, 1.85rem);
+  line-height: 1.25;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--white);
   transition: color 0.3s ease;
 }
 
 .serviceCard:hover .serviceTitle {
   color: var(--accent);
+}
+
+.serviceList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.serviceList li {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.serviceList li span {
+  color: var(--accent);
+  font-weight: bold;
+  flex-shrink: 0;
 }
 
 /* Scroll Animation Section Organic Update */
@@ -226,18 +405,20 @@
 .scrollContainer {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 40px;
+}
+
+@media (min-width: 768px) {
+  .scrollContainer {
+    gap: 60px;
+  }
 }
 
 .scrollItem {
-  background: var(--glass-bg);
-  border: var(--glass-border);
-  border-radius: var(--radius-lg);
-  padding: 40px;
-  backdrop-filter: blur(10px);
+  padding: 20px 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
+  gap: 24px;
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
@@ -246,19 +427,91 @@
     grid-template-columns: 1fr 1fr;
     align-items: center;
     padding: 60px;
+    gap: 40px;
   }
 }
 
 .scrollImageWrapper {
   position: relative;
-  height: 400px;
+  height: 240px;
   width: 100%;
   overflow: hidden;
   border-radius: var(--radius-md);
   border: var(--glass-border);
 }
 
+@media (min-width: 640px) {
+  .scrollImageWrapper {
+    height: 340px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .scrollImageWrapper {
+    height: 400px;
+  }
+}
+
 .scrollText h3 {
-  font-size: clamp(2rem, 4vw, 3rem);
-  margin-bottom: 20px;
+  font-size: clamp(1.6rem, 3.5vw, 3rem);
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+
+.scrollText p {
+  font-size: clamp(0.92rem, 1.1vw, 1rem);
+  line-height: 1.7;
+}
+
+/* Scroll Indicator */
+.scrollIndicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.scrollLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--accent);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: var(--navy-deep);
+  z-index: 2;
+}
+
+.hoverArrow {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: var(--accent);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 3;
+  backdrop-filter: blur(8px);
+}
+
+.serviceCard:hover .hoverArrow {
+  background: var(--accent);
+  color: var(--navy-deep);
+  transform: translate(3px, -3px);
+  box-shadow: 0 0 20px rgba(201, 162, 39, 0.5);
 }
