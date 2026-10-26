@@ -29,7 +29,7 @@ const services = [
       "Educational Institutions",
       "Commercial Shops"
     ],
-    img: "/group-photos-web/team-group-01.webp",
+    img: "/services-images/facility.webp",
     link: "/services/facility-management"
   },
   {
@@ -40,7 +40,7 @@ const services = [
       "Individual residences",
       "Old age homes"
     ],
-    img: "/group-photos-web/team-group-02.webp",
+    img: "/services-images/geriatric.webp",
     link: "/services/geriatric-service"
   },
   {
@@ -50,7 +50,7 @@ const services = [
       "Corporate offices",
       "Apartments"
     ],
-    img: "/group-photos-web/team-security-02.webp",
+    img: "/services-images/cctv.webp",
     link: "/services/cctv"
   },
   {
@@ -62,7 +62,7 @@ const services = [
       "Industry",
       "Factories"
     ],
-    img: "/group-photos-web/team-group-03.webp",
+    img: "/services-images/manpower.webp",
     link: "/services/man-power"
   }
 ];
@@ -102,10 +102,9 @@ export default function ServicesHorizontalScroll() {
         <div className="container" style={{ width: "100%", marginBottom: "0.8rem" }}>
           <div className={styles.headerRow}>
             <div className={styles.headerLeft}>
-              <span className={styles.eyebrow}>SERVICES HUB</span>
               <h2 className={styles.introStatement}>OUR SERVICES</h2>
               <p className={styles.subtitle}>
-                Explore our complete range of security and facility management services tailored for businesses and residences in Bangalore.
+                Complete range of professional security and facility management solutions across Bangalore.
               </p>
             </div>
             <div className={styles.scrollIndicator}>
@@ -141,26 +140,16 @@ export default function ServicesHorizontalScroll() {
                     <div className={styles.cardOverlay}></div>
                     
                     <div className={styles.cardContent}>
-                      <div className={styles.cardTopRow}>
-                        <span className={styles.cardNumber}>{service.num}</span>
-                        <span className={styles.cardTag}>SPECIALIZED</span>
-                      </div>
-
                       <h3 className={styles.cardTitle}>{service.title}</h3>
-                      
-                      <div className={styles.divider}></div>
 
-                      <div className={styles.cardListWrapper}>
-                        <span className={styles.coverageLabel}>SECTORS COVERED:</span>
-                        <ul className={styles.cardList}>
-                          {service.items.map((item, itemIdx) => (
-                            <li key={itemIdx} className={styles.cardListItem}>
-                              <span className={styles.bulletDot}></span>
-                              <span className={styles.itemText}>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                      <ul className={styles.cardList}>
+                        {service.items.map((item, itemIdx) => (
+                          <li key={itemIdx} className={styles.cardListItem}>
+                            <span className={styles.bulletDot}></span>
+                            <span className={styles.itemText}>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
                       
                       <div className={styles.cardFooter}>
                         <span className={styles.exploreText}>LEARN MORE</span>

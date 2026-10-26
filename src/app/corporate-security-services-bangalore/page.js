@@ -39,9 +39,8 @@ export default function Page() {
       <section className="section">
         <div className="container">
           <FadeIn y={30}>
-            <span className={styles.sectionNumber}>CORPORATE OFFICE SECURITY</span>
             <h2 className={styles.introStatement} style={{ marginBottom: '60px' }}>
-              TRAINED. VERIFIED. SUPERVISED.
+              OPERATIONAL EXCELLENCE & EXPERTISE
             </h2>
           </FadeIn>
 

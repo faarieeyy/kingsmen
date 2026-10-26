@@ -19,17 +19,20 @@ export const metadata = {
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Preloader from "@/components/layout/Preloader";
+import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${spaceGrotesk.variable} ${inter.variable}`}>
-        <div className="bgBlobTopRight"></div>
-        <div className="bgBlobBottomLeft"></div>
-        <Preloader />
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <SmoothScrollProvider>
+          <div className="bgBlobTopRight"></div>
+          <div className="bgBlobBottomLeft"></div>
+          <Preloader />
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </SmoothScrollProvider>
       </body>
     </html>
   );

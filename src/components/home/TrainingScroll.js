@@ -32,7 +32,6 @@ export default function TrainingScroll() {
     <section className={`section ${styles.scrollSection}`} ref={containerRef}>
       <div className="container">
         <div style={{ marginBottom: "60px" }}>
-          <span className={styles.sectionNumber}>04</span>
           <h2 className={styles.introStatement}>OPERATIONAL EXCELLENCE</h2>
           <div className="gold-line" style={{ width: "100px", marginTop: "20px" }}></div>
         </div>
@@ -48,7 +47,6 @@ export default function TrainingScroll() {
               transition={{ duration: 0.6 }}
             >
               <div className={styles.scrollText}>
-                <span className={styles.sectionNumber}>{stage.id}</span>
                 <h3>{stage.title}</h3>
                 <p>{stage.desc}</p>
               </div>

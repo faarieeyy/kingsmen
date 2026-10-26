@@ -25,7 +25,7 @@ const serviceCards = [
   {
     title: "Facility Management & Housekeeping",
     href: "/services/facility-management",
-    image: "/group-photos-web/team-group-01.webp",
+    image: "/services-images/facility.webp",
     items: [
       "Corporate offices",
       "Apartments",
@@ -38,7 +38,7 @@ const serviceCards = [
   {
     title: "Geriatric Service",
     href: "/services/geriatric-service",
-    image: "/group-photos-web/team-group-02.webp",
+    image: "/services-images/geriatric.webp",
     items: [
       "Hospitals",
       "Individual residences",
@@ -49,7 +49,7 @@ const serviceCards = [
   {
     title: "CCTV Services",
     href: "/services/cctv",
-    image: "/group-photos-web/team-security-02.webp",
+    image: "/services-images/cctv.webp",
     items: [
       "Corporate offices",
       "Apartments"
@@ -59,7 +59,7 @@ const serviceCards = [
   {
     title: "Man Power Service",
     href: "/services/man-power",
-    image: "/group-photos-web/team-group-03.webp",
+    image: "/services-images/manpower.webp",
     items: [
       "For Dark stores",
       "Warehouse",
@@ -100,9 +100,8 @@ export default function Page() {
       <section className="section">
         <div className="container">
           <FadeIn y={30}>
-            <span className={styles.sectionNumber}>TOTAL SECURITY & DETECTIVE SOLUTIONS</span>
             <h2 className={styles.introStatement} style={{ marginBottom: "50px" }}>
-              TRAINED. VERIFIED. SUPERVISED.
+              COMPREHENSIVE SERVICE PORTFOLIO
             </h2>
           </FadeIn>
 

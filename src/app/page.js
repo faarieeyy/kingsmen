@@ -25,7 +25,6 @@ export default function Home() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span className={styles.sectionNumber}>01</span>
               <h2 className={styles.introStatement}>
                 COMPREHENSIVE SECURITY SOLUTIONS.
               </h2>

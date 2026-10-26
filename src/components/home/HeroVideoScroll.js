@@ -131,17 +131,34 @@ export default function HeroVideoScroll() {
     };
   }, [isMobileDevice]);
 
-  // Update canvas on scroll
+  // Update canvas on scroll with requestAnimationFrame and frame index deduplication
   useEffect(() => {
+    let animationFrameId = null;
+    let lastRenderedIdx = -1;
+
     const unsubscribe = frameIndexMotion.on("change", (latest) => {
       const frameIdx = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(latest)));
-      const img = imagesRef.current[frameIdx];
-      if (img && img.complete) {
-        requestAnimationFrame(() => drawFrame(img));
+      if (frameIdx === lastRenderedIdx) return;
+
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
       }
+
+      animationFrameId = requestAnimationFrame(() => {
+        lastRenderedIdx = frameIdx;
+        const img = imagesRef.current[frameIdx];
+        if (img && img.complete) {
+          drawFrame(img);
+        }
+      });
     });
 
-    return () => unsubscribe();
+    return () => {
+      unsubscribe();
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
   }, [frameIndexMotion]);
 
   return (
@@ -153,39 +170,32 @@ export default function HeroVideoScroll() {
         {/* Ambient aesthetic gradients for cinematic feel - only darkens after video finishes */}
         <motion.div className={styles.overlay} style={{ opacity: overlayOpacity }} />
 
-        {/* Main Brand Content: Appears ONLY AFTER the full video has played! */}
+        {/* Main Brand Content: Direct, bold, without glassy card container */}
         <motion.div
           className={styles.contentLayer}
           style={{ opacity: contentOpacity, y: contentY, pointerEvents: "auto" }}
         >
           <div className="container">
-            <span className={styles.eyebrow}>PREMIER SECURITY & FACILITY MANAGEMENT</span>
-            <h1 className={styles.headline}>
-              <span>SECURITY.</span>
-              <span>DISCIPLINE.</span>
-              <span className={styles.goldText}>TRUST.</span>
-            </h1>
-            <p className={styles.supportCopy}>
-              Elite protection, modern surveillance, and comprehensive facility management deployed across Bangalore.
-            </p>
-            <div className={styles.actions}>
-              <Link href="/security-audit-bangalore" className="primary-btn">
-                REQUEST FREE SITE ASSESSMENT
-              </Link>
-              <Link href="/services" className={styles.secondaryBtn}>
-                EXPLORE SERVICES
-              </Link>
+            <div className={styles.heroContent}>
+              <h1 className={styles.headline}>
+                <span>SECURITY.</span>{" "}
+                <span>DISCIPLINE.</span>{" "}
+                <span className={styles.goldText}>TRUST.</span>
+              </h1>
+              <p className={styles.supportCopy}>
+                Premier security and integrated facility management deployed across Bangalore.
+              </p>
+              <div className={styles.actions}>
+                <Link href="/security-audit-bangalore" className="primary-btn">
+                  REQUEST ASSESSMENT
+                </Link>
+                <Link href="/services" className={styles.secondaryBtn}>
+                  EXPLORE SERVICES
+                </Link>
+              </div>
             </div>
           </div>
         </motion.div>
-
-        {/* Subtle scroll progress bar at the bottom */}
-        <div className={styles.progressTrack}>
-          <motion.div
-            className={styles.progressBar}
-            style={{ scaleX: scrollYProgress, transformOrigin: "left" }}
-          />
-        </div>
       </div>
     </div>
   );

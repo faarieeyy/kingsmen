@@ -39,7 +39,6 @@ export default function SecurityServices() {
       <section className="section" style={{ backgroundColor: 'var(--navy-deep)' }}>
         <div className="container">
           <FadeIn y={30}>
-            <span className={styles.sectionNumber}>SCOPE OF SERVICES</span>
             <div className="gold-line" style={{ marginBottom: "30px", width: "50px" }}></div>
             <h2 className={styles.introStatement} style={{ marginBottom: '60px' }}>
               SMARTLY UNIFORMED, HIGHLY TRAINED.

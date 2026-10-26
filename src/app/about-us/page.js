@@ -18,13 +18,11 @@ export default function AboutUs() {
         </div>
         <div className="container">
           <div className={styles.heroContent}>
-            <FadeIn delay={0.2} y={20}>
-              <span className={styles.eyebrow}>ABOUT KINGSMEN</span>
-            </FadeIn>
             <h1 className={styles.headline}>
-              <FadeIn delay={0.3} y={20}><span>COMMITTED TO</span></FadeIn>
-              <FadeIn delay={0.4} y={20}><span>DELIVER QUALITY</span></FadeIn>
-              <FadeIn delay={0.5} y={20}><span>SERVICES.</span></FadeIn>
+              <FadeIn delay={0.2} y={20}>
+                <span>COMMITTED TO DELIVER</span>{" "}
+                <span className={styles.goldText}>QUALITY SERVICES.</span>
+              </FadeIn>
             </h1>
           </div>
         </div>

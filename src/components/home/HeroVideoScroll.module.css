@@ -69,28 +69,8 @@
   pointer-events: auto;
 }
 
-.eyebrow {
-  display: inline-block;
-  background: rgba(201, 162, 39, 0.14);
-  color: var(--accent);
-  padding: 6px 18px;
-  border-radius: var(--radius-full);
-  border: 1px solid rgba(201, 162, 39, 0.35);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  backdrop-filter: blur(8px);
-}
-
-@media (max-width: 768px) {
-  .eyebrow {
-    font-size: 0.7rem;
-    padding: 4px 12px;
-    letter-spacing: 1.5px;
-    margin-bottom: 12px;
-  }
+.heroContent {
+  max-width: 800px;
 }
 
 .headline {
@@ -98,11 +78,11 @@
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-size: clamp(2.1rem, 7.5vw, 5.8rem);
-  line-height: 1.15;
+  font-size: clamp(2.4rem, 6.5vw, 5.2rem);
+  line-height: 1.12;
   color: var(--white);
-  margin-bottom: 16px;
-  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.75);
+  margin-bottom: 20px;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.85), 0 2px 10px rgba(0, 0, 0, 0.9);
 }
 
 .headline span {
@@ -111,28 +91,19 @@
 }
 
 .goldText {
-  color: var(--accent);
-}
-
-.subHeadline {
-  font-family: var(--font-heading), sans-serif;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: clamp(1.8rem, 5.5vw, 4.2rem);
-  line-height: 1.15;
-  color: var(--white);
-  margin-bottom: 16px;
-  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.75);
+  color: #FFD700;
+  display: inline-block;
+  text-shadow: 0 0 25px rgba(255, 215, 0, 0.4), 0 2px 10px rgba(0, 0, 0, 0.85);
 }
 
 .supportCopy {
-  font-size: clamp(0.95rem, 2.5vw, 1.25rem);
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.95);
   max-width: 620px;
-  margin-bottom: 28px;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+  margin-bottom: 34px;
+  font-weight: 400;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.85);
 }
 
 .actions {
@@ -240,20 +211,4 @@
 /* End step */
 .endStep {
   align-items: center;
-}
-
-/* Progress bar at the bottom */
-.progressTrack {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.08);
-  z-index: 10;
-}
-
-.progressBar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--gold-restrained), var(--gold-secondary));
 }
