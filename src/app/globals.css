@@ -231,6 +231,15 @@ a {
     color: var(--accent);
   }
   
+  .desktop-nav a.nav-contact-highlight {
+    color: #FFD700;
+    font-weight: 700;
+  }
+  
+  .desktop-nav a.nav-contact-highlight:hover {
+    color: #FFE55C;
+  }
+  
   .nav-actions {
     display: flex;
     align-items: center;
@@ -320,6 +329,11 @@ a {
   background: rgba(201, 162, 39, 0.12);
   color: var(--accent);
   padding-left: 22px;
+}
+
+.mobile-nav-links a.nav-contact-highlight {
+  color: #FFD700;
+  border-left: 3px solid #FFD700;
 }
 
 .mobile-nav-actions {

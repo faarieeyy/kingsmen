@@ -58,13 +58,8 @@ export default function Navbar() {
           <Link href="/industries">Industries</Link>
           <Link href="/about-us">About</Link>
           <Link href="/team">Team</Link>
-          <Link href="/contact">Contact</Link>
+          <Link href="/contact" className="nav-contact-highlight">Contact</Link>
         </nav>
-
-        <div className="nav-actions">
-          <a href="https://wa.me/919916107029" className="whatsapp-link">WhatsApp</a>
-          <Link href="/security-audit-bangalore" className="primary-btn">FREE SITE ASSESSMENT</Link>
-        </div>
 
         <button 
           className="mobile-toggle" 
@@ -84,15 +79,7 @@ export default function Navbar() {
             <Link href="/industries" onClick={() => setMobileMenuOpen(false)}>Industries</Link>
             <Link href="/about-us" onClick={() => setMobileMenuOpen(false)}>About</Link>
             <Link href="/team" onClick={() => setMobileMenuOpen(false)}>Team</Link>
-            <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
-          </div>
-          <div className="mobile-nav-actions">
-            <a href="https://wa.me/919916107029" className="whatsapp-link mobile-whatsapp" onClick={() => setMobileMenuOpen(false)}>
-              💬 Chat on WhatsApp
-            </a>
-            <Link href="/security-audit-bangalore" className="primary-btn mobile" onClick={() => setMobileMenuOpen(false)}>
-              FREE SITE ASSESSMENT
-            </Link>
+            <Link href="/contact" className="nav-contact-highlight" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
           </div>
         </div>
       )}
