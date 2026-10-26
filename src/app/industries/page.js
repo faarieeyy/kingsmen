@@ -12,7 +12,7 @@ const industryCards = [
   {
     title: "Corporate & Tech Parks",
     href: "/corporate-security-services-bangalore",
-    image: "/group-photos-web/team-security-01.webp",
+    image: "/authentic-photos/corporate-guards-salute-crouzet.webp",
     desc: "Elite front-desk reception, biometric access control, and 24/7 patrol for IT parks and MNC facilities.",
     features: [
       "Access control & visitor management",
@@ -24,7 +24,7 @@ const industryCards = [
   {
     title: "Residential & Gated Communities",
     href: "/apartment-security-services-bangalore",
-    image: "/group-photos-web/team-group-01.webp",
+    image: "/authentic-photos/guard-profile-lineup.webp",
     desc: "Vigilant gate management, vehicle verification, and resident safety for apartment societies and villas.",
     features: [
       "Visitor & delivery screening",
@@ -36,7 +36,7 @@ const industryCards = [
   {
     title: "Warehouses & Logistics Hubs",
     href: "/warehouse-security-services-bangalore",
-    image: "/group-photos-web/team-security-02.webp",
+    image: "/authentic-photos/fire-equipment-drill.webp",
     desc: "Rigorous dock surveillance, material dispatch verification, and loss prevention across fulfillment centers.",
     features: [
       "Loading dock & truck tracking",
@@ -48,7 +48,7 @@ const industryCards = [
   {
     title: "Industrial & Manufacturing Plants",
     href: "/industrial-security-services-bangalore",
-    image: "/group-photos-web/team-group-02.webp",
+    image: "/authentic-photos/fire-drill-hose-training.webp",
     desc: "Strict labor discipline, industrial safety compliance, and round-the-clock boundary protection.",
     features: [
       "Factory gate & labor attendance checks",
@@ -60,7 +60,7 @@ const industryCards = [
   {
     title: "Commercial & Retail Centers",
     href: "/commercial-security-services-bangalore",
-    image: "/group-photos-web/team-group-03.webp",
+    image: "/authentic-photos/techpark-security-patrol.webp",
     desc: "Customer-friendly presence, crowd management, and shoplifting deterrence for retail stores and malls.",
     features: [
       "Footfall & crowd flow regulation",
@@ -72,7 +72,7 @@ const industryCards = [
   {
     title: "Schools & Educational Institutions",
     href: "/school-security-services-bangalore",
-    image: "/group-photos-web/team-security-01.webp",
+    image: "/authentic-photos/campus-parade-drill.webp",
     desc: "Thoroughly vetted personnel dedicated to student safety, bus bay supervision, and campus access control.",
     features: [
       "Student pickup/drop monitoring",
@@ -84,7 +84,7 @@ const industryCards = [
   {
     title: "Hospitals & Healthcare Facilities",
     href: "/hospital-security-services-bangalore",
-    image: "/group-photos-web/team-group-02.webp",
+    image: "/authentic-photos/security-officer-blazer.webp",
     desc: "Sensitive patient care support, emergency ward order maintenance, and doctor/staff protection.",
     features: [
       "Emergency ward crowd control",
@@ -102,8 +102,8 @@ export default function IndustriesPage() {
       <section className={styles.hero} style={{ minHeight: "55vh" }}>
         <div className={styles.heroBackground}>
           <Image
-            src="/group-photos-web/team-security-01.webp"
-            alt="Industries We Serve"
+            src="/authentic-photos/techpark-security-lineup.webp"
+            alt="Industries We Serve - Kingsmen Security & Facility"
             fill
             style={{ objectFit: "cover" }}
             priority

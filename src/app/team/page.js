@@ -14,7 +14,7 @@ export default function TeamPage() {
     <>
       <section className={styles.hero} style={{ minHeight: '60vh', paddingBottom: '60px' }}>
         <div className={styles.heroBackground}>
-          <Image src="/group-photos-web/team-group-02.webp" alt="Kingsmen Team" fill style={{ objectFit: "cover" }} priority />
+          <Image src="/authentic-photos/boardroom-executive-strategy.webp" alt="Kingsmen Executive Leadership and Management Team" fill style={{ objectFit: "cover" }} priority />
         </div>
         <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
           <div className={styles.heroContent} style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '150px' }}>

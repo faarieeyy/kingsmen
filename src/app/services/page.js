@@ -12,7 +12,7 @@ const serviceCards = [
   {
     title: "Security Service",
     href: "/services/security-service",
-    image: "/group-photos-web/team-security-01.webp",
+    image: "/authentic-photos/guard-formation-portrait.webp",
     items: [
       "Corporate offices",
       "Apartments",
@@ -75,7 +75,7 @@ export default function Page() {
     <>
       <section className={styles.hero}>
         <div className={styles.heroBackground}>
-          <Image src="/group-photos-web/team-security-01.webp" alt="Our Services" fill style={{ objectFit: "cover" }} priority />
+          <Image src="/authentic-photos/guard-formation-lineup.webp" alt="Kingsmen Security & Facility Services" fill style={{ objectFit: "cover" }} priority />
         </div>
         <div className="container">
           <div className={styles.heroContent}>

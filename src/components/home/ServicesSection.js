@@ -10,7 +10,7 @@ const divisions = [
     category: "SECURITY & DEFENSE",
     title: "SECURITY SERVICES",
     tagline: "Armed & unarmed guarding, CCTV surveillance solutions, and industrial manpower deployment across Bangalore.",
-    image: "/group-photos-web/team-security-01.webp",
+    image: "/authentic-photos/guard-formation-portrait.webp",
     services: [
       {
         name: "Security Service",
@@ -48,7 +48,7 @@ const divisions = [
     category: "FACILITY & CARE",
     title: "FACILITY MANAGEMENT",
     tagline: "Integrated corporate housekeeping, facility maintenance, and specialized geriatric care services.",
-    image: "/group-photos-web/team-group-01.webp",
+    image: "/authentic-photos/corporate-reception-guard.webp",
     services: [
       {
         name: "Facility Management & Housekeeping",

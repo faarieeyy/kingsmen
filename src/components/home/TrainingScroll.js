@@ -10,21 +10,21 @@ const stages = [
     title: "SELECTION",
     subtitle: "Meticulous Vetting & Merit-Based Recruitment",
     desc: "We recruit our personnel in accordance with rigorous parameters laid down in our recruitment policy. This includes education, age, physical endurance, and integrity testing. All candidates undergo extensive 5-tier verification, criminal record vetting, and police clearances before induction.",
-    img: "/group-photos-web/team-security-02.webp"
+    img: "/authentic-photos/guard-formation-lineup.webp"
   },
   {
     id: "02",
     title: "TRAINING",
     subtitle: "Ex-Servicemen Led Tactical & Emergency Drills",
     desc: "Before deployment, every Kingsmen officer undertakes comprehensive training designed by Ex-Army and Air Force commanders. Beyond core guarding discipline, personnel are trained in emergency first aid, industrial firefighting, self-defence, and access control technologies.",
-    img: "/group-photos-web/team-group-01.webp"
+    img: "/authentic-photos/fire-safety-extinguisher-drill.webp"
   },
   {
     id: "03",
     title: "SUPERVISION",
     subtitle: "24/7 Field Inspections & Command Center Audits",
     desc: "Supervision ensures uncompromised standards. Dedicated field officers and mobile patrolling squads conduct unannounced day and night surprise inspections. Our central command center operates 24/7 in English and Hindi to guarantee immediate support for any incident.",
-    img: "/group-photos-web/team-group-02.webp"
+    img: "/authentic-photos/supervisor-field-inspection.webp"
   }
 ];
 

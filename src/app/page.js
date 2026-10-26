@@ -46,7 +46,7 @@ export default function Home() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             >
-              <Image src="/group-photos-web/team-security-01.webp" alt="Kingsmen Security Team" fill style={{ objectFit: "cover" }} />
+              <Image src="/authentic-photos/guard-formation-portrait.webp" alt="Kingsmen Security Force in Bangalore" fill style={{ objectFit: "cover" }} priority />
               <motion.div className={styles.imageOverlay} 
                 initial={{ scaleX: 1 }} 
                 whileInView={{ scaleX: 0 }} 

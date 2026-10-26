@@ -14,7 +14,7 @@ export default function AboutUs() {
     <>
       <section className={styles.hero} style={{ minHeight: '60vh' }}>
         <div className={styles.heroBackground}>
-          <Image src="/group-photos-web/team-security-01.webp" alt="About Kingsmen" fill style={{ objectFit: "cover" }} priority />
+          <Image src="/authentic-photos/techpark-security-lineup.webp" alt="Kingsmen Security Officers and Team in Bangalore" fill style={{ objectFit: "cover" }} priority />
         </div>
         <div className="container">
           <div className={styles.heroContent}>

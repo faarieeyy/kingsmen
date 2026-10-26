@@ -54,8 +54,8 @@ export default function Contact() {
       <section className={pageStyles.hero} style={{ minHeight: "50vh" }}>
         <div className={pageStyles.heroBackground}>
           <Image
-            src="/group-photos-web/team-security-01.webp"
-            alt="Contact Kingsmen Security"
+            src="/authentic-photos/corporate-guards-salute-wide.webp"
+            alt="Contact Kingsmen Security Services Bangalore"
             fill
             style={{ objectFit: "cover" }}
             priority

@@ -16,7 +16,7 @@ const services = [
       "Educational Institutions",
       "Commercial Shops"
     ],
-    img: "/group-photos-web/team-security-01.webp",
+    img: "/authentic-photos/guard-formation-portrait.webp",
     link: "/services/security-service"
   },
   {

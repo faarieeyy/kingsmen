@@ -43,8 +43,8 @@ export default function Page() {
       <section className={styles.hero} style={{ minHeight: "55vh" }}>
         <div className={styles.heroBackground}>
           <Image
-            src="/group-photos-web/team-security-02.webp"
-            alt="Security Guard Services"
+            src="/authentic-photos/guard-uniform-cadres.webp"
+            alt="Professional Manned Security Guard Services"
             fill
             style={{ objectFit: "cover" }}
             priority

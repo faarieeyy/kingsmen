@@ -35,7 +35,7 @@ export default function TeamHeroScroll() {
       <div style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden" }}>
         
         <div className={styles.heroBackground}>
-          <Image src="/group-photos-web/team-group-03.webp" alt="Kingsmen Team" fill style={{ objectFit: "cover" }} priority />
+          <Image src="/authentic-photos/techpark-security-lineup.webp" alt="Kingsmen Operational Leadership and Field Officers" fill style={{ objectFit: "cover" }} priority />
         </div>
 
         <div className="container" style={{ position: 'relative', zIndex: 2, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

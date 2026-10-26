@@ -13,7 +13,7 @@ export default function Page() {
     <>
       <section className={styles.hero} style={{ minHeight: '60vh' }}>
         <div className={styles.heroBackground}>
-          <Image src="/group-photos-web/team-security-02.webp" alt="Frequently Asked Questions" fill style={{ objectFit: "cover" }} priority />
+          <Image src="/authentic-photos/classroom-security-training.webp" alt="Frequently Asked Questions - Kingsmen Knowledge Base" fill style={{ objectFit: "cover" }} priority />
         </div>
         <div className="container">
           <div className={styles.heroContent}>
