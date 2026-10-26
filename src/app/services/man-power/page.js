@@ -42,8 +42,8 @@ export default function Page() {
       <section className={styles.hero} style={{ minHeight: "55vh" }}>
         <div className={styles.heroBackground}>
           <Image
-            src="/services-images/manpower.webp"
-            alt="Industrial Man Power Deployment"
+            src="/authentic-photos/techpark-security-lineup.webp"
+            alt="Kingsmen Industrial and Commercial Manpower Deployment"
             fill
             style={{ objectFit: "cover" }}
             priority
