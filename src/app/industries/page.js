@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import FadeIn from "@/components/animations/FadeIn";
+import IndustriesHero from "@/components/industries/IndustriesHero";
 import styles from "../page.module.css";
 
 export const metadata = {
@@ -10,6 +11,7 @@ export const metadata = {
 
 const industryCards = [
   {
+    id: "sector-corporate",
     title: "Corporate & Tech Parks",
     href: "/corporate-security-services-bangalore",
     image: "/authentic-photos/corporate-guards-salute-crouzet.webp",
@@ -22,6 +24,7 @@ const industryCards = [
     delay: 0.1,
   },
   {
+    id: "sector-residential",
     title: "Residential & Gated Communities",
     href: "/apartment-security-services-bangalore",
     image: "/authentic-photos/guard-profile-lineup.webp",
@@ -34,6 +37,7 @@ const industryCards = [
     delay: 0.2,
   },
   {
+    id: "sector-warehouses",
     title: "Warehouses & Logistics Hubs",
     href: "/warehouse-security-services-bangalore",
     image: "/authentic-photos/fire-equipment-drill.webp",
@@ -46,6 +50,7 @@ const industryCards = [
     delay: 0.3,
   },
   {
+    id: "sector-industrial",
     title: "Industrial & Manufacturing Plants",
     href: "/industrial-security-services-bangalore",
     image: "/authentic-photos/fire-drill-hose-training.webp",
@@ -58,6 +63,7 @@ const industryCards = [
     delay: 0.4,
   },
   {
+    id: "sector-commercial",
     title: "Commercial & Retail Centers",
     href: "/commercial-security-services-bangalore",
     image: "/authentic-photos/techpark-security-patrol.webp",
@@ -70,6 +76,7 @@ const industryCards = [
     delay: 0.5,
   },
   {
+    id: "sector-schools",
     title: "Schools & Educational Institutions",
     href: "/school-security-services-bangalore",
     image: "/authentic-photos/campus-parade-drill.webp",
@@ -82,6 +89,7 @@ const industryCards = [
     delay: 0.6,
   },
   {
+    id: "sector-hospitals",
     title: "Hospitals & Healthcare Facilities",
     href: "/hospital-security-services-bangalore",
     image: "/authentic-photos/security-officer-blazer.webp",
@@ -98,102 +106,104 @@ const industryCards = [
 export default function IndustriesPage() {
   return (
     <>
-      {/* Full-Screen Sticky Hero Banner with Card Stack Overlay */}
-      <section className={`${styles.hero} ${styles.fullHero} ${styles.stickyHero}`}>
-        <div className={styles.heroBackground}>
-          <Image
-            src="/authentic-photos/guard-formation-portrait.webp"
-            alt="Kingsmen Professional Security Personnel Deployment across Bangalore"
-            fill
-            style={{ objectFit: "cover", objectPosition: "center 40%" }}
-            priority
-          />
-        </div>
-        <div className="container" style={{ width: "100%" }}>
-          <div className={styles.heroContent} style={{ maxWidth: "800px" }}>
-            <FadeIn delay={0.2} y={20}>
-              <span className={styles.eyebrow}>SECTOR EXPERTISE</span>
-            </FadeIn>
-            <h1 className={styles.headline} style={{ marginTop: "12px", marginBottom: "16px" }}>
-              <FadeIn delay={0.3} y={20}>
-                <span>INDUSTRIES</span>{" "}
-                <span className={styles.goldText}>WE PROTECT.</span>
-              </FadeIn>
-            </h1>
-            <FadeIn delay={0.4} y={20}>
-              <p className={styles.supportCopy}>
-                Specialized security protocols and trained personnel tailored to the distinct operational demands of businesses, campuses, and communities across Bangalore.
-              </p>
-              <div style={{ marginTop: "24px" }}>
-                <Link href="/security-audit-bangalore" className="primary-btn">
-                  REQUEST SITE ASSESSMENT
-                </Link>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
+      {/* Superb Cinematic Parallax Hero Transition (No text stacking collision) */}
+      <IndustriesHero />
 
-        {/* Scroll indicator for the full-screen hero */}
-        <div className={styles.heroScrollIndicator}>
-          <span>SCROLL TO EXPLORE</span>
-          <span className={styles.heroScrollArrow}>↓</span>
-        </div>
-      </section>
-
-      {/* Main Sector Grid as Card Stack Overlay */}
-      <section className={`${styles.stackOverlay} section`}>
+      {/* Main Sector Showcase Grid in Seamless Dark Navy Flow */}
+      <section
+        className="section"
+        style={{
+          position: "relative",
+          zIndex: 4,
+          backgroundColor: "var(--navy-midnight)",
+          paddingTop: "70px",
+          paddingBottom: "100px",
+        }}
+      >
         <div className="container">
-          <FadeIn y={20}>
-            <h2 className={styles.introStatement} style={{ marginBottom: "16px" }}>
-              TAILORED DEPLOYMENT FOR EVERY SECTOR
-            </h2>
-            <p style={{ maxWidth: "720px", color: "rgba(255, 255, 255, 0.75)", marginBottom: "48px", lineHeight: "1.6" }}>
-              Different facilities face unique threats. Kingsmen designs sector-specific standard operating procedures (SOPs), specialized training, and supervisory regimens for each industry.
-            </p>
+          <FadeIn y={25}>
+            <div style={{ maxWidth: "800px", marginBottom: "48px" }}>
+              <span
+                style={{
+                  display: "inline-block",
+                  color: "var(--accent)",
+                  fontFamily: "var(--font-heading)",
+                  fontSize: "0.8rem",
+                  letterSpacing: "2.5px",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  marginBottom: "10px",
+                }}
+              >
+                DEPLOYMENT PORTFOLIO
+              </span>
+              <h2 className={styles.introStatement} style={{ marginBottom: "16px" }}>
+                TAILORED DEPLOYMENT FOR EVERY SECTOR
+              </h2>
+              <p
+                style={{
+                  color: "rgba(255, 255, 255, 0.75)",
+                  fontSize: "1.05rem",
+                  lineHeight: "1.65",
+                  margin: 0,
+                }}
+              >
+                Different facilities face unique threats. Kingsmen designs sector-specific standard operating procedures (SOPs), specialized training, and supervisory regimens for each industry.
+              </p>
+            </div>
           </FadeIn>
 
           <div className={styles.servicesSplit}>
             {industryCards.map((ind, idx) => (
-              <Link key={idx} href={ind.href} className={styles.serviceCardLink}>
-                <FadeIn delay={ind.delay} y={25} className={styles.serviceFadeIn}>
-                  <div className={styles.serviceCard}>
-                    <div className={styles.serviceBg}>
-                      <Image
-                        src={ind.image}
-                        alt={ind.title}
-                        fill
-                        style={{ objectFit: "cover" }}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                    </div>
-                    <div className={styles.serviceOverlay}></div>
+              <div key={idx} id={ind.id} style={{ scrollMarginTop: "120px" }}>
+                <Link href={ind.href} className={styles.serviceCardLink}>
+                  <FadeIn delay={ind.delay} y={25} className={styles.serviceFadeIn}>
+                    <div className={styles.serviceCard}>
+                      <div className={styles.serviceBg}>
+                        <Image
+                          src={ind.image}
+                          alt={ind.title}
+                          fill
+                          style={{ objectFit: "cover" }}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      </div>
+                      <div className={styles.serviceOverlay}></div>
 
-                    <div className={styles.hoverArrow} aria-hidden="true">
-                      <span>↗</span>
-                    </div>
+                      <div className={styles.hoverArrow} aria-hidden="true">
+                        <span>↗</span>
+                      </div>
 
-                    <div className={styles.serviceContent}>
-                      <h3 className={styles.serviceTitle}>{ind.title}</h3>
-                      <p style={{ fontSize: "0.88rem", color: "rgba(255, 255, 255, 0.8)", marginBottom: "14px", lineHeight: "1.4" }}>
-                        {ind.desc}
-                      </p>
-                      <ul className={styles.serviceList}>
-                        {ind.features.map((feat, featIdx) => (
-                          <li key={featIdx}>
-                            <span>•</span>
-                            <div>{feat}</div>
-                          </li>
-                        ))}
-                      </ul>
+                      <div className={styles.serviceContent}>
+                        <h3 className={styles.serviceTitle}>{ind.title}</h3>
+                        <p
+                          style={{
+                            fontSize: "0.88rem",
+                            color: "rgba(255, 255, 255, 0.8)",
+                            marginBottom: "14px",
+                            lineHeight: "1.4",
+                          }}
+                        >
+                          {ind.desc}
+                        </p>
+                        <ul className={styles.serviceList}>
+                          {ind.features.map((feat, featIdx) => (
+                            <li key={featIdx}>
+                              <span>•</span>
+                              <div>{feat}</div>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                </FadeIn>
-              </Link>
+                  </FadeIn>
+                </Link>
+              </div>
             ))}
           </div>
 
           {/* Quick Assessment CTA banner */}
-          <div style={{ marginTop: "70px" }}>
+          <div style={{ marginTop: "75px" }}>
             <FadeIn y={20}>
               <div
                 style={{
@@ -206,13 +216,22 @@ export default function IndustriesPage() {
                   justifyContent: "space-between",
                   flexWrap: "wrap",
                   gap: "24px",
+                  boxShadow: "0 20px 50px rgba(0, 0, 0, 0.4)",
                 }}
               >
                 <div>
-                  <h3 style={{ fontSize: "1.6rem", marginBottom: "8px", color: "var(--white)", textTransform: "uppercase" }}>
+                  <h3
+                    style={{
+                      fontSize: "1.6rem",
+                      marginBottom: "8px",
+                      color: "var(--white)",
+                      textTransform: "uppercase",
+                      fontFamily: "var(--font-heading)",
+                    }}
+                  >
                     Need a Custom Security Plan for Your Facility?
                   </h3>
-                  <p style={{ margin: 0, color: "rgba(255, 255, 255, 0.8)", maxWidth: "600px" }}>
+                  <p style={{ margin: 0, color: "rgba(255, 255, 255, 0.8)", maxWidth: "600px", lineHeight: "1.6" }}>
                     Our senior commanders conduct on-site vulnerability audits across Bangalore with zero obligation.
                   </p>
                 </div>
