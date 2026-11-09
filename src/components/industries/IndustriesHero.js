@@ -25,15 +25,15 @@ export default function IndustriesHero() {
   });
 
   // Parallax transform for the authentic photo
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
-  // Clean fade-out and upward lift for hero card — dissolves cleanly before user reaches sector section
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-  const contentY = useTransform(scrollYProgress, [0, 0.4], [0, -40]);
+  // Clean fade-out and upward lift for hero copy — dissolves BEFORE user reaches sector section
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.45], [1, 0]);
+  const contentY = useTransform(scrollYProgress, [0, 0.45], [0, -40]);
 
-  // Dynamic atmospheric veil: 0% at rest (fully bright picture), gradually dims on scroll
-  const dynamicVeilOpacity = useTransform(scrollYProgress, [0, 0.7], [0, 0.65]);
+  // Dynamic atmospheric veil that gently intensifies on scroll
+  const dynamicVeilOpacity = useTransform(scrollYProgress, [0, 0.7], [0, 0.75]);
 
   // Smooth scroll handler for quick navigation pills
   const handlePillClick = (e, id) => {
@@ -51,7 +51,7 @@ export default function IndustriesHero() {
 
   return (
     <section ref={containerRef} className={styles.heroSection}>
-      {/* 3D Depth Parallax Background Image - Bright, Sharp & Prominent */}
+      {/* 3D Depth Parallax Background Image */}
       <motion.div
         className={styles.bgWrapper}
         style={{
@@ -69,51 +69,67 @@ export default function IndustriesHero() {
         />
       </motion.div>
 
-      {/* Crystal-clear ambient lighting */}
+      {/* Atmospheric lighting gradients */}
       <div className={styles.ambientGradient} />
 
-      {/* Scroll-Driven Darkening Veil (0% opacity at top) */}
+      {/* Dynamic Scroll Darkening Veil */}
       <motion.div
         className={styles.dynamicVeil}
         style={{ opacity: dynamicVeilOpacity }}
       />
 
-      {/* Upper-Zone Hero Floating Glass Card: leaves the guards below 100% visible */}
+      {/* Hero Headline and Value Proposition */}
       <div className={styles.contentContainer}>
         <motion.div
-          className={styles.heroCard}
+          className={styles.heroContent}
           style={{
             opacity: contentOpacity,
             y: contentY,
           }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
             <span className={styles.eyebrow}>
               <span className={styles.eyebrowDot} />
               Sector Expertise
             </span>
-          </div>
+          </motion.div>
 
-          <h1 className={styles.headline}>
+          <motion.h1
+            className={styles.headline}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <span>INDUSTRIES</span> <span className={styles.goldText}>WE PROTECT.</span>
-          </h1>
+          </motion.h1>
 
-          <p className={styles.supportCopy}>
-            Specialized security protocols and trained personnel tailored to the distinct operational demands of businesses, campuses, and communities across Bangalore.
-          </p>
+          <motion.p
+            className={styles.supportCopy}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            Specialized security protocols and trained personnel across Bangalore.
+          </motion.p>
 
-          <div className={styles.ctaGroup}>
+          <motion.div
+            className={styles.ctaGroup}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             <Link href="/security-audit-bangalore" className={styles.heroBtn}>
-              REQUEST SITE ASSESSMENT
+              REQUEST ASSESSMENT
               <span>→</span>
             </Link>
             <Link href="/contact" className={styles.heroBtnSecondary}>
-              SPEAK WITH A COMMANDER
+              CONTACT EXPERTS
             </Link>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
 
@@ -121,7 +137,7 @@ export default function IndustriesHero() {
       <div className={styles.dockWrapper}>
         <div className={styles.dockContainer}>
           <div className={styles.dockTitle}>
-            <span>⚡ SECTOR DIRECTORY</span>
+            <span>⚡ SECTORS</span>
           </div>
           <div className={styles.dockPills}>
             {sectorPills.map((pill) => (

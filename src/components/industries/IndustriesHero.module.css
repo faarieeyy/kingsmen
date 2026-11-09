@@ -8,14 +8,14 @@
   justify-content: space-between;
   overflow: hidden;
   background-color: var(--navy-deep);
-  padding: 110px 0 0 0;
+  padding: 120px 0 0 0;
   box-sizing: border-box;
 }
 
-/* 3D Depth Parallax Background Image Container */
+/* Background image container with smooth parallax */
 .bgWrapper {
   position: absolute;
-  inset: -10% 0 -10% 0;
+  inset: -10% 0 -10% 0; /* Extra overflow for smooth parallax drift */
   width: 100%;
   height: 120%;
   z-index: 1;
@@ -23,93 +23,98 @@
   will-change: transform;
 }
 
-/* Shows the guards in full sharpness without cropping or obstruction */
 .bgImage {
   object-fit: cover;
-  object-position: center 68%;
+  object-position: center 38%;
 }
 
-/* Crystal-clear ambient lighting: keeps authentic photography fully bright & visible */
+/* Sophisticated multi-layer vignette and atmospheric lighting */
 .ambientGradient {
   position: absolute;
   inset: 0;
   z-index: 2;
   background: 
-    /* Delicate top navbar scrim for navbar link legibility */
+    /* Left side text contrast veil */
     linear-gradient(
-      180deg,
-      rgba(3, 11, 24, 0.65) 0%,
-      rgba(3, 11, 24, 0.15) 16%,
-      transparent 32%
+      90deg,
+      rgba(3, 11, 24, 0.82) 0%,
+      rgba(3, 11, 24, 0.55) 38%,
+      rgba(3, 11, 24, 0.15) 70%,
+      rgba(3, 11, 24, 0.05) 100%
     ),
-    /* Soft bottom fade to smoothly transition into the sector showcase */
+    /* Top navbar scrim */
     linear-gradient(
       180deg,
-      transparent 65%,
-      rgba(3, 11, 24, 0.5) 85%,
+      rgba(3, 11, 24, 0.8) 0%,
+      rgba(3, 11, 24, 0.15) 20%,
+      transparent 45%
+    ),
+    /* Bottom atmospheric fade seamlessly into midnight navy */
+    linear-gradient(
+      180deg,
+      transparent 45%,
+      rgba(3, 11, 24, 0.65) 75%,
       var(--navy-midnight) 100%
     );
   pointer-events: none;
 }
 
-/* Scroll-driven veil: completely transparent at top (0%), only dims slightly when scrolling down */
+/* Dynamic darkening overlay controlled by scroll */
 .dynamicVeil {
   position: absolute;
   inset: 0;
   z-index: 3;
-  background: rgba(3, 11, 24, 0.7);
+  background: radial-gradient(
+    circle at 50% 60%,
+    rgba(3, 11, 24, 0.2) 0%,
+    rgba(3, 11, 24, 0.8) 100%
+  );
   pointer-events: none;
   will-change: opacity;
 }
 
-/* Content Container: Aligned to upper portion so guards in the lower half remain 100% unobstructed */
+/* Hero Content Area: Compact and visually balanced */
 .contentContainer {
   position: relative;
   z-index: 5;
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 20px 24px 20px 24px;
+  padding: 30px 24px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   flex: 1;
 }
 
-/* Compact, luxury glass card for hero copy: provides razor-sharp text legibility 
-   without darkening or cluttering the rest of the photo */
-.heroCard {
-  max-width: 580px;
-  background: rgba(5, 16, 36, 0.62);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 24px;
-  padding: 28px 32px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+.heroContent {
+  max-width: 580px; /* Reduced from 820px */
   will-change: transform, opacity;
 }
 
 .eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  background: rgba(212, 175, 55, 0.15);
-  border: 1px solid rgba(212, 175, 55, 0.4);
+  gap: 7px;
+  padding: 5px 14px; /* Reduced from 7px 18px */
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.35);
   border-radius: 999px;
   color: var(--accent);
   font-family: var(--font-heading);
-  font-size: 0.75rem;
+  font-size: 0.72rem; /* Reduced from 0.8rem */
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 14px;
+  margin-bottom: 14px; /* Reduced from 20px */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
 }
 
 .eyebrowDot {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 8px var(--accent);
@@ -123,13 +128,13 @@
 
 .headline {
   font-family: var(--font-heading);
-  font-size: clamp(2.2rem, 4.2vw, 3.4rem);
-  font-weight: 900;
-  line-height: 1.1;
+  font-size: clamp(1.9rem, 3.4vw, 2.9rem); /* Reduced significantly from clamp(2.8rem, 5.5vw, 4.6rem) */
+  font-weight: 800;
+  line-height: 1.15;
   letter-spacing: -0.01em;
   color: var(--white);
   text-transform: uppercase;
-  margin: 0 0 12px 0;
+  margin: 0 0 12px 0; /* Reduced from 20px */
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
@@ -139,14 +144,15 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
-  filter: drop-shadow(0 2px 10px rgba(212, 175, 55, 0.35));
+  filter: drop-shadow(0 3px 12px rgba(212, 175, 55, 0.3));
 }
 
 .supportCopy {
-  font-size: 0.98rem;
-  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(0.92rem, 1.15vw, 1.02rem); /* Reduced from clamp(1.05rem, 1.8vw, 1.25rem) */
+  color: rgba(255, 255, 255, 0.85);
   line-height: 1.55;
-  margin: 0 0 22px 0;
+  max-width: 480px; /* Reduced from 680px */
+  margin-bottom: 22px; /* Reduced from 32px */
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
@@ -161,23 +167,23 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 13px 26px;
+  padding: 12px 26px; /* Reduced from 16px 34px */
   background: linear-gradient(135deg, var(--accent) 0%, #b8860b 100%);
   color: #030b18;
   font-family: var(--font-heading);
-  font-size: 0.82rem;
+  font-size: 0.78rem; /* Reduced from 0.88rem */
   font-weight: 800;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
   border-radius: var(--radius-sm);
   text-decoration: none;
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35);
-  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .heroBtn:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 30px rgba(212, 175, 55, 0.5);
+  box-shadow: 0 10px 28px rgba(212, 175, 55, 0.45);
   background: linear-gradient(135deg, #f0c952 0%, var(--accent) 100%);
 }
 
@@ -185,18 +191,20 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 12px 20px;
+  padding: 11px 22px; /* Reduced from 15px 28px */
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: var(--white);
   font-family: var(--font-heading);
-  font-size: 0.82rem;
+  font-size: 0.78rem; /* Reduced from 0.88rem */
   font-weight: 700;
   letter-spacing: 1.2px;
   text-transform: uppercase;
   border-radius: var(--radius-sm);
   text-decoration: none;
-  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.25s ease;
 }
 
 .heroBtnSecondary:hover {
@@ -206,7 +214,7 @@
   transform: translateY(-2px);
 }
 
-/* Bottom Anchor Dock: Interactive quick-navigation chips */
+/* Bottom Anchor Dock: Compact quick-navigation chips */
 .dockWrapper {
   position: relative;
   z-index: 5;
@@ -217,16 +225,16 @@
 }
 
 .dockContainer {
-  background: rgba(5, 16, 36, 0.78);
-  border: 1px solid rgba(212, 175, 55, 0.25);
-  border-radius: 18px;
-  padding: 12px 18px;
+  background: rgba(5, 16, 36, 0.82);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 16px;
+  padding: 10px 18px;
   display: flex;
   align-items: center;
   gap: 14px;
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -237,7 +245,7 @@
 
 .dockTitle {
   font-family: var(--font-heading);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   letter-spacing: 2px;
   font-weight: 800;
   color: var(--accent);
@@ -245,7 +253,7 @@
   white-space: nowrap;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   padding-right: 12px;
   border-right: 1px solid rgba(255, 255, 255, 0.15);
 }
@@ -260,13 +268,13 @@
 .dockPill {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 7px 14px;
+  gap: 5px;
+  padding: 6px 14px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.88);
-  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.78rem;
   font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
@@ -274,7 +282,7 @@
 }
 
 .dockPill:hover {
-  background: rgba(212, 175, 55, 0.18);
+  background: rgba(212, 175, 55, 0.15);
   border-color: rgba(212, 175, 55, 0.5);
   color: var(--white);
   transform: translateY(-2px);
@@ -282,18 +290,18 @@
 }
 
 .dockPillArrow {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--accent);
   opacity: 0.7;
   transition: transform 0.2s ease;
 }
 
 .dockPill:hover .dockPillArrow {
-  transform: translateX(3px);
+  transform: translateX(2px);
   opacity: 1;
 }
 
-/* Glowing gold horizon seam */
+/* Elegant illuminated transition horizon */
 .transitionHorizon {
   position: absolute;
   bottom: 0;
@@ -312,6 +320,7 @@
   z-index: 6;
 }
 
+/* Ambient glow cone shining down into the sector section */
 .ambientCone {
   position: absolute;
   bottom: -40px;
@@ -332,27 +341,37 @@
 @media (max-width: 768px) {
   .heroSection {
     min-height: auto;
-    padding: 95px 0 0 0;
+    padding: 100px 0 0 0;
   }
 
   .contentContainer {
-    padding: 16px 16px 24px 16px;
-  }
-
-  .heroCard {
-    padding: 22px 20px;
-    border-radius: 18px;
-    max-width: 100%;
+    padding: 20px 18px 30px 18px;
   }
 
   .headline {
-    font-size: 2.1rem;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
   }
 
   .supportCopy {
-    font-size: 0.92rem;
+    font-size: 0.88rem;
     line-height: 1.5;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
+    max-width: 100%;
+  }
+
+  .ctaGroup {
+    gap: 10px;
+  }
+
+  .heroBtn {
+    padding: 10px 18px;
+    font-size: 0.74rem;
+  }
+
+  .heroBtnSecondary {
+    padding: 9px 16px;
+    font-size: 0.74rem;
   }
 
   .dockWrapper {
@@ -360,16 +379,16 @@
   }
 
   .dockTitle {
-    display: none;
+    display: none; /* Hide label on mobile to give full room to pill slider */
   }
 
   .dockContainer {
     padding: 8px 12px;
-    border-radius: 14px;
+    border-radius: 12px;
   }
 
   .dockPill {
-    padding: 6px 12px;
-    font-size: 0.76rem;
+    padding: 5px 10px;
+    font-size: 0.74rem;
   }
 }
