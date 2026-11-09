@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Link from "next/link";
 import styles from "./HeroVideoScroll.module.css";
 
@@ -18,19 +18,24 @@ export default function HeroVideoScroll() {
     offset: ["start start", "end end"],
   });
 
-  // Map scroll 0 -> 0.72 to video playback from frame 0 -> TOTAL_FRAMES - 1
-  // This ensures the entire video plays smoothly and purely FIRST without any text overlay!
-  const frameIndexMotion = useTransform(scrollYProgress, [0, 0.72], [0, TOTAL_FRAMES - 1], {
+  // Soft physics spring to remove any stepping or micro-jitter when scrolling
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 110,
+    damping: 28,
+    restDelta: 0.0008,
+  });
+
+  // Map smooth scroll 0 -> 0.72 to video playback from frame 0 -> TOTAL_FRAMES - 1
+  const frameIndexMotion = useTransform(smoothProgress, [0, 0.72], [0, TOTAL_FRAMES - 1], {
     clamp: true,
   });
 
   // Video overlay gradient is 0% during playback (completely transparent, exact video colors).
-  // Only when user scrolls past 0.72 (video is fully finished) does a dark gradient fade in behind the text for readability.
-  const overlayOpacity = useTransform(scrollYProgress, [0.72, 0.82], [0, 0.85]);
+  const overlayOpacity = useTransform(smoothProgress, [0.72, 0.82], [0, 0.85]);
 
-  // Main brand content ONLY fades in after the video has finished playing!
-  const contentOpacity = useTransform(scrollYProgress, [0.74, 0.84, 1], [0, 1, 1]);
-  const contentY = useTransform(scrollYProgress, [0.74, 0.84], ["40px", "0px"]);
+  // Main brand content ONLY fades in after the video has finished playing
+  const contentOpacity = useTransform(smoothProgress, [0.74, 0.84, 1], [0, 1, 1]);
+  const contentY = useTransform(smoothProgress, [0.74, 0.84], ["40px", "0px"]);
 
   // Render a specific frame image onto the canvas with cover-fit and image smoothing enabled
   const drawFrame = (img) => {
