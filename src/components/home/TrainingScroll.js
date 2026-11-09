@@ -67,7 +67,7 @@ export default function TrainingScroll() {
                   className={styles.scrollText}
                   initial={{ opacity: 0, x: isEven ? 80 : -80 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: false, amount: 0.3 }}
+                  viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                   style={{ order: isEven ? 2 : 1 }}
                 >
@@ -124,7 +124,7 @@ export default function TrainingScroll() {
                   className={styles.scrollImageWrapper}
                   initial={{ opacity: 0, x: isEven ? -80 : 80, scale: 0.95 }}
                   whileInView={{ opacity: 1, x: 0, scale: 1 }}
-                  viewport={{ once: false, amount: 0.3 }}
+                  viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 0.85, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                   style={{
                     order: isEven ? 1 : 2,
@@ -140,14 +140,6 @@ export default function TrainingScroll() {
                     fill
                     style={{ objectFit: "cover" }}
                     sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                  <div
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: "linear-gradient(180deg, transparent 60%, rgba(5, 16, 36, 0.5) 100%)",
-                      pointerEvents: "none",
-                    }}
                   />
                 </motion.div>
               </div>

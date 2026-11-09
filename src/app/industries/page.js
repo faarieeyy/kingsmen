@@ -98,23 +98,23 @@ const industryCards = [
 export default function IndustriesPage() {
   return (
     <>
-      {/* Hero Banner */}
-      <section className={styles.hero} style={{ minHeight: "55vh" }}>
+      {/* Full-Screen Sticky Hero Banner with Card Stack Overlay */}
+      <section className={`${styles.hero} ${styles.fullHero} ${styles.stickyHero}`}>
         <div className={styles.heroBackground}>
           <Image
-            src="/authentic-photos/techpark-security-lineup.webp"
-            alt="Industries We Serve - Kingsmen Security & Facility"
+            src="/authentic-photos/guard-formation-portrait.webp"
+            alt="Kingsmen Professional Security Personnel Deployment across Bangalore"
             fill
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "cover", objectPosition: "center 40%" }}
             priority
           />
         </div>
-        <div className="container">
-          <div className={styles.heroContent}>
+        <div className="container" style={{ width: "100%" }}>
+          <div className={styles.heroContent} style={{ maxWidth: "800px" }}>
             <FadeIn delay={0.2} y={20}>
               <span className={styles.eyebrow}>SECTOR EXPERTISE</span>
             </FadeIn>
-            <h1 className={styles.headline}>
+            <h1 className={styles.headline} style={{ marginTop: "12px", marginBottom: "16px" }}>
               <FadeIn delay={0.3} y={20}>
                 <span>INDUSTRIES</span>{" "}
                 <span className={styles.goldText}>WE PROTECT.</span>
@@ -124,16 +124,24 @@ export default function IndustriesPage() {
               <p className={styles.supportCopy}>
                 Specialized security protocols and trained personnel tailored to the distinct operational demands of businesses, campuses, and communities across Bangalore.
               </p>
-              <Link href="/security-audit-bangalore" className="primary-btn">
-                REQUEST SITE ASSESSMENT
-              </Link>
+              <div style={{ marginTop: "24px" }}>
+                <Link href="/security-audit-bangalore" className="primary-btn">
+                  REQUEST SITE ASSESSMENT
+                </Link>
+              </div>
             </FadeIn>
           </div>
         </div>
+
+        {/* Scroll indicator for the full-screen hero */}
+        <div className={styles.heroScrollIndicator}>
+          <span>SCROLL TO EXPLORE</span>
+          <span className={styles.heroScrollArrow}>↓</span>
+        </div>
       </section>
 
-      {/* Main Sector Grid */}
-      <section className="section" style={{ backgroundColor: "var(--navy-midnight)" }}>
+      {/* Main Sector Grid as Card Stack Overlay */}
+      <section className={`${styles.stackOverlay} section`}>
         <div className="container">
           <FadeIn y={20}>
             <h2 className={styles.introStatement} style={{ marginBottom: "16px" }}>

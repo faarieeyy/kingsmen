@@ -50,36 +50,45 @@ export default function Contact() {
 
   return (
     <>
-      {/* Simple, Professional Hero Banner */}
-      <section className={pageStyles.hero} style={{ minHeight: "50vh" }}>
+      {/* Full-Screen Sticky Hero Banner with Card Stack Overlay */}
+      <section className={`${pageStyles.hero} ${pageStyles.fullHero} ${pageStyles.stickyHero}`}>
         <div className={pageStyles.heroBackground}>
           <Image
-            src="/authentic-photos/corporate-guards-salute-wide.webp"
-            alt="Contact Kingsmen Security Services Bangalore"
+            src="/authentic-photos/contact-hero-salute-crouzet.webp"
+            alt="Kingsmen Security Officers Saluting at Crouzet Facility"
             fill
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "cover", objectPosition: "center bottom" }}
             priority
           />
         </div>
-        <div className="container">
-          <div className={pageStyles.heroContent}>
-            <h1 className={pageStyles.headline} style={{ marginBottom: "12px" }}>
-              <FadeIn delay={0.2} y={20}>
+        <div className="container" style={{ width: "100%" }}>
+          <div className={pageStyles.heroContent} style={{ maxWidth: "800px" }}>
+            <FadeIn delay={0.2} y={20}>
+              <span className={pageStyles.eyebrow}>GET IN TOUCH</span>
+            </FadeIn>
+            <FadeIn delay={0.3} y={20}>
+              <h1 className={pageStyles.headline} style={{ marginBottom: "16px", marginTop: "12px" }}>
                 <span>CONTACT</span>{" "}
                 <span style={{ color: "#FFD700" }}>OUR TEAM</span>
-              </FadeIn>
-            </h1>
-            <FadeIn delay={0.3} y={20}>
+              </h1>
+            </FadeIn>
+            <FadeIn delay={0.4} y={20}>
               <p className={pageStyles.supportCopy}>
                 Reach out to our leadership directly or submit your query for prompt assistance.
               </p>
             </FadeIn>
           </div>
         </div>
+
+        {/* Scroll indicator for the full-screen hero */}
+        <div className={pageStyles.heroScrollIndicator}>
+          <span>SCROLL TO SUBMIT QUERY</span>
+          <span className={pageStyles.heroScrollArrow}>↓</span>
+        </div>
       </section>
 
-      {/* Main Details & Query Panel Section */}
-      <section className="section" style={{ backgroundColor: "var(--navy-midnight)" }}>
+      {/* Main Details & Query Panel Section as Card Stack Overlay */}
+      <section className={`${pageStyles.stackOverlay} section`}>
         <div className="container">
           <div className={pageStyles.introGrid}>
             {/* Left: Simple Query Form */}

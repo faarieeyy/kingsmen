@@ -1,0 +1,116 @@
+.trustSection {
+  position: relative;
+  width: 100%;
+  background-color: #061226;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 40px 0;
+  z-index: 10;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: stretch;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 8px 24px;
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.item:hover {
+  transform: translateY(-6px);
+}
+
+/* Subtle vertical divider between items, exactly matching the reference design */
+.item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.iconWrapper {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  color: var(--accent);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease, filter 0.3s ease;
+  animation: floatGentle 4s ease-in-out infinite;
+}
+
+.item:hover .iconWrapper {
+  transform: translateY(-6px) scale(1.15);
+  color: #ffd700;
+  filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.5));
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+  letter-spacing: 0.4px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.item:hover .title {
+  color: #ffd700;
+  transform: translateY(-2px);
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.78rem, 0.88vw, 0.85rem);
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.45;
+  max-width: 220px;
+}
+
+@media (max-width: 1024px) {
+  .trustSection {
+    padding: 34px 0;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 28px;
+  }
+
+  .item:nth-child(2)::after {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .trustSection {
+    padding: 28px 0;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+
+  .item::after {
+    display: none !important;
+  }
+
+  .item {
+    padding: 0 16px;
+  }
+}
+

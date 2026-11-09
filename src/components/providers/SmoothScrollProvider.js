@@ -10,8 +10,8 @@ export default function SmoothScrollProvider({ children }) {
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1.0,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 0.8,
+      touchMultiplier: 1.1,
       infinite: false,
     });
 

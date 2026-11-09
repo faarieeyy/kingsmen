@@ -1,13 +1,13 @@
 .wrapper {
-  /* 320vh provides the ideal buttery smooth scrolling speed on desktop and responsive on mobile */
-  height: 320vh;
+  /* Extended scroll track (480vh) to provide a slower, calmer, and more cinematic scrubbing experience */
+  height: 480vh;
   position: relative;
   background-color: var(--navy-deep);
 }
 
 @media (max-width: 768px) {
   .wrapper {
-    height: 240vh;
+    height: 360vh;
   }
 }
 

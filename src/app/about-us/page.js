@@ -12,23 +12,34 @@ export const metadata = {
 export default function AboutUs() {
   return (
     <>
-      <section className={styles.hero} style={{ minHeight: '60vh' }}>
+      {/* Full-Screen Sticky Hero Banner with Card Stack Overlay */}
+      <section className={`${styles.hero} ${styles.fullHero} ${styles.stickyHero}`}>
         <div className={styles.heroBackground}>
-          <Image src="/authentic-photos/techpark-security-lineup.webp" alt="Kingsmen Security Officers and Team in Bangalore" fill style={{ objectFit: "cover" }} priority />
+          <Image src="/authentic-photos/techpark-security-lineup.webp" alt="Kingsmen Security Officers and Team in Bangalore" fill style={{ objectFit: "cover", objectPosition: "center 30%" }} priority />
         </div>
-        <div className="container">
-          <div className={styles.heroContent}>
-            <h1 className={styles.headline}>
-              <FadeIn delay={0.2} y={20}>
+        <div className="container" style={{ width: "100%" }}>
+          <div className={styles.heroContent} style={{ maxWidth: "800px" }}>
+            <FadeIn delay={0.2} y={20}>
+              <span className={styles.eyebrow}>ABOUT KINGSMEN</span>
+            </FadeIn>
+            <h1 className={styles.headline} style={{ marginTop: "12px", marginBottom: "16px" }}>
+              <FadeIn delay={0.3} y={20}>
                 <span>COMMITTED TO DELIVER</span>{" "}
                 <span className={styles.goldText}>QUALITY SERVICES.</span>
               </FadeIn>
             </h1>
           </div>
         </div>
+
+        {/* Scroll indicator for the full-screen hero */}
+        <div className={styles.heroScrollIndicator}>
+          <span>SCROLL TO DISCOVER</span>
+          <span className={styles.heroScrollArrow}>↓</span>
+        </div>
       </section>
 
-      <section className="section" style={{ backgroundColor: 'var(--navy-midnight)' }}>
+      {/* Main Section as Card Stack Overlay */}
+      <section className={`${styles.stackOverlay} section`}>
         <div className="container">
           <div className={styles.introGrid}>
             <FadeIn x={-50} delay={0.2}>

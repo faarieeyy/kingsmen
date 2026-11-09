@@ -12,19 +12,152 @@
 /* Default inner-page hero banner: relative in document flow, normal scroll */
 .hero {
   position: relative;
-  min-height: 55vh;
+  min-height: 65vh;
   display: flex;
   align-items: center;
   overflow: hidden;
   background-color: var(--navy-deep);
-  padding: 150px 0 80px 0;
+  padding: 195px 0 95px 0;
 }
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 48vh;
-    padding: 110px 0 50px 0;
+    min-height: 52vh;
+    padding: 140px 0 60px 0;
   }
+}
+
+/* Full-sized 100vh hero variant for immersive page headers */
+.fullHero {
+  height: 100vh !important;
+  height: 100dvh !important;
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
+  max-height: 100vh !important;
+  max-height: 100dvh !important;
+  width: 100%;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding: 100px 0 60px 0 !important;
+  box-sizing: border-box !important;
+  position: relative;
+  overflow: hidden !important;
+}
+
+/* Sticky Full Hero for Card Stack Overlay effect */
+.stickyHero {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1 !important;
+}
+
+.fullHero .heroBackground {
+  border-radius: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Bright, clean gradient that keeps authentic photography fully visible */
+.fullHero .heroBackground::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(5, 16, 36, 0.72) 0%,
+    rgba(5, 16, 36, 0.38) 45%,
+    rgba(5, 16, 36, 0.08) 80%,
+    transparent 100%
+  ),
+  linear-gradient(
+    180deg,
+    rgba(5, 16, 36, 0.45) 0%,
+    transparent 35%,
+    transparent 100%
+  ) !important;
+}
+
+/* Stack Overlay section that slides up over the sticky hero on scroll:
+   Starts semi-transparent with a frosted glass blur & blended gradient at the top,
+   then transitions seamlessly into full dark navy as you scroll down. */
+.stackOverlay {
+  position: relative !important;
+  z-index: 10 !important;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 20, 44, 0.35) 0%,
+    rgba(8, 20, 44, 0.68) 120px,
+    rgba(8, 20, 44, 0.92) 240px,
+    var(--navy-midnight) 380px,
+    var(--navy-midnight) 100%
+  ) !important;
+  backdrop-filter: blur(28px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(150%) !important;
+  border-radius: 40px 40px 0 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.65) !important;
+}
+
+@media (max-width: 768px) {
+  .fullHero {
+    height: 100vh !important;
+    height: 100dvh !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    max-height: 100vh !important;
+    max-height: 100dvh !important;
+    padding: 90px 0 50px 0 !important;
+  }
+
+  .fullHero .heroBackground {
+    border-radius: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .stackOverlay {
+    border-radius: 24px 24px 0 0 !important;
+    background: linear-gradient(
+      180deg,
+      rgba(8, 20, 44, 0.4) 0%,
+      rgba(8, 20, 44, 0.75) 90px,
+      rgba(8, 20, 44, 0.95) 180px,
+      var(--navy-midnight) 280px,
+      var(--navy-midnight) 100%
+    ) !important;
+    backdrop-filter: blur(20px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
+  }
+}
+
+.heroScrollIndicator {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  z-index: 2;
+  pointer-events: none;
+  animation: bounceSlow 2s infinite ease-in-out;
+}
+
+.heroScrollArrow {
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+@keyframes bounceSlow {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, 6px); }
 }
 
 /* Pinned hero strictly for homepage interactive scroll experience */
@@ -56,7 +189,20 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(5, 16, 36, 0.95) 0%, rgba(5, 16, 36, 0.6) 50%, rgba(5, 16, 36, 0.3) 100%);
+  background: linear-gradient(
+    to right,
+    rgba(5, 16, 36, 0.76) 0%,
+    rgba(5, 16, 36, 0.45) 45%,
+    rgba(5, 16, 36, 0.1) 75%,
+    transparent 100%
+  ),
+  linear-gradient(
+    180deg,
+    rgba(5, 16, 36, 0.3) 0%,
+    transparent 35%,
+    transparent 75%,
+    rgba(5, 16, 36, 0.65) 100%
+  );
 }
 
 .heroContent {
@@ -80,13 +226,21 @@
   color: var(--accent);
   padding: 6px 16px;
   border-radius: var(--radius-full);
-  border: 1px solid rgba(201, 162, 39, 0.2);
+  border: 1px solid rgba(201, 162, 39, 0.25);
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 0.8rem;
   font-weight: 600;
   margin-bottom: 24px;
   display: inline-block;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: floatGentle 4.5s ease-in-out infinite;
+}
+
+.eyebrow:hover {
+  transform: translateY(-3px) scale(1.03);
+  border-color: rgba(201, 162, 39, 0.6);
+  box-shadow: 0 6px 20px rgba(201, 162, 39, 0.3);
 }
 
 @media (max-width: 768px) {
@@ -108,25 +262,39 @@
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
   margin-bottom: 16px;
   word-break: break-word;
+  transition: transform 0.35s ease;
 }
 
 .headline span {
   display: inline-block;
   margin-right: 0.35rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.headline span:hover {
+  transform: translateY(-2px);
 }
 
 .goldText {
   color: #FFD700;
   display: inline-block;
   text-shadow: 0 0 25px rgba(255, 215, 0, 0.4), 0 2px 10px rgba(0, 0, 0, 0.85);
+  transition: text-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.goldText:hover {
+  text-shadow: 0 0 35px rgba(255, 215, 0, 0.7), 0 2px 12px rgba(0, 0, 0, 0.9);
+  transform: translateY(-2px);
 }
 
 .supportCopy {
   font-size: clamp(1rem, 2.5vw, 1.25rem);
   line-height: 1.6;
-  opacity: 0.85;
+  opacity: 0.92;
   max-width: 600px;
   margin-bottom: 30px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
+  transition: opacity 0.3s ease;
 }
 
 .heroActions {
@@ -159,7 +327,7 @@
   text-transform: uppercase;
   font-size: 0.85rem;
   letter-spacing: 1.5px;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   backdrop-filter: blur(10px);
   display: inline-flex;
   align-items: center;
@@ -168,7 +336,10 @@
 }
 
 .secondaryBtn:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45), 0 0 20px rgba(255, 255, 255, 0.12);
 }
 
 .introSection {
@@ -196,6 +367,11 @@
 .bentoCard {
   padding: 40px 0;
   position: relative;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bentoCard:hover {
+  transform: translateY(-6px);
 }
 
 @media (max-width: 768px) {
@@ -205,11 +381,12 @@
 }
 
 .hoverCard {
-  transition: transform 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
 }
 
 .hoverCard:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
 }
 
 .bentoImage {
@@ -218,6 +395,25 @@
   overflow: hidden;
   height: 300px;
   border: var(--glass-border);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.5s ease,
+              border-color 0.4s ease;
+}
+
+.bentoCard:hover .bentoImage,
+.bentoImage:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(201, 162, 39, 0.45);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 25px rgba(201, 162, 39, 0.15);
+}
+
+.bentoImage img {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bentoCard:hover .bentoImage img,
+.bentoImage:hover img {
+  transform: scale(1.06);
 }
 
 @media (min-width: 1024px) {
@@ -299,52 +495,59 @@
 .serviceCard {
   position: relative;
   overflow: hidden;
-  border-radius: var(--radius-lg);
+  border-radius: 22px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding: 32px 28px;
-  min-height: 420px;
+  min-height: 440px;
   height: 100%;
   flex: 1;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.45s ease;
   cursor: pointer;
-  border: var(--glass-border);
-  background: rgba(8, 20, 44, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #08142c;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
 }
 
 @media (max-width: 640px) {
   .serviceCard {
     padding: 24px 20px;
-    min-height: 360px;
-    border-radius: var(--radius-md);
+    min-height: 380px;
+    border-radius: 18px;
   }
 }
 
 .serviceCard:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(201, 162, 39, 0.3);
+  transform: translateY(-12px) scale(1.015);
+  box-shadow: 0 32px 75px -10px rgba(0, 0, 0, 0.85), 0 0 30px rgba(201, 162, 39, 0.3);
+  border-color: rgba(201, 162, 39, 0.6);
 }
 
 .serviceBg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  transition: transform 0.8s ease;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .serviceCard:hover .serviceBg {
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
 
+/* Lightened overlay: upper 45% is transparent so photos are crystal-clear and vivid;
+   bottom 55% provides a solid dark gradient for 100% white text readability */
 .serviceOverlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    to top,
-    rgba(5, 16, 36, 0.98) 0%,
-    rgba(5, 16, 36, 0.82) 50%,
-    rgba(5, 16, 36, 0.45) 100%
+    180deg,
+    rgba(5, 14, 32, 0.04) 0%,
+    rgba(5, 14, 32, 0.18) 38%,
+    rgba(5, 14, 32, 0.68) 62%,
+    rgba(5, 14, 32, 0.94) 100%
   );
   z-index: 1;
   transition: background 0.3s ease;
@@ -352,10 +555,11 @@
 
 .serviceCard:hover .serviceOverlay {
   background: linear-gradient(
-    to top,
-    rgba(5, 16, 36, 0.96) 0%,
-    rgba(5, 16, 36, 0.72) 50%,
-    rgba(5, 16, 36, 0.3) 100%
+    180deg,
+    rgba(5, 14, 32, 0.0) 0%,
+    rgba(5, 14, 32, 0.12) 38%,
+    rgba(5, 14, 32, 0.6) 62%,
+    rgba(5, 14, 32, 0.9) 100%
   );
 }
 
@@ -367,16 +571,21 @@
 }
 
 .serviceTitle {
-  font-size: clamp(1.3rem, 1.8vw, 1.85rem);
+  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-size: clamp(1.3rem, 1.7vw, 1.75rem);
   line-height: 1.25;
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 14px;
   color: var(--white);
-  transition: color 0.3s ease;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.95);
+  transition: color 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .serviceCard:hover .serviceTitle {
   color: var(--accent);
+  transform: translateY(-2px);
 }
 
 .serviceList {
@@ -389,17 +598,21 @@
 }
 
 .serviceList li {
+  font-family: var(--font-body), "Inter", sans-serif;
   font-size: 0.92rem;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.85);
+  color: #FFFFFF;
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 10px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
 }
 
 .serviceList li span {
   color: var(--accent);
-  font-weight: bold;
+  font-weight: 800;
+  font-size: 0.95rem;
+  line-height: 1.2;
   flex-shrink: 0;
 }
 
@@ -500,24 +713,24 @@
   position: absolute;
   top: 24px;
   right: 24px;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.25rem;
   color: var(--accent);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 3;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
 }
 
 .serviceCard:hover .hoverArrow {
   background: var(--accent);
   color: var(--navy-deep);
-  transform: translate(3px, -3px);
-  box-shadow: 0 0 20px rgba(201, 162, 39, 0.5);
+  transform: translate(5px, -5px) scale(1.14);
+  box-shadow: 0 0 25px rgba(201, 162, 39, 0.6), 0 4px 15px rgba(0, 0, 0, 0.4);
 }

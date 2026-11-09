@@ -73,12 +73,19 @@ const serviceCards = [
 export default function Page() {
   return (
     <>
-      <section className={styles.hero}>
+      {/* Full-Screen Sticky Hero Banner with Card Stack Overlay */}
+      <section className={`${styles.hero} ${styles.fullHero} ${styles.stickyHero}`}>
         <div className={styles.heroBackground}>
-          <Image src="/authentic-photos/guard-formation-lineup.webp" alt="Kingsmen Security & Facility Services" fill style={{ objectFit: "cover" }} priority />
+          <Image
+            src="/authentic-photos/guard-formation-lineup.webp"
+            alt="Kingsmen Security & Facility Services"
+            fill
+            style={{ objectFit: "cover", objectPosition: "center 30%" }}
+            priority
+          />
         </div>
-        <div className="container">
-          <div className={styles.heroContent}>
+        <div className="container" style={{ width: "100%" }}>
+          <div className={styles.heroContent} style={{ maxWidth: "800px" }}>
             <FadeIn delay={0.2}>
               <span className={styles.eyebrow}>SERVICES HUB</span>
             </FadeIn>
@@ -89,15 +96,24 @@ export default function Page() {
               <p className={styles.supportCopy}>
                 Explore our complete range of security and facility management services tailored for businesses and residences in Bangalore.
               </p>
-              <Link href="/security-audit-bangalore" className="primary-btn">
-                REQUEST FREE SITE ASSESSMENT
-              </Link>
+              <div style={{ marginTop: "24px" }}>
+                <Link href="/security-audit-bangalore" className="primary-btn">
+                  REQUEST FREE SITE ASSESSMENT
+                </Link>
+              </div>
             </FadeIn>
           </div>
         </div>
+
+        {/* Scroll indicator for the full-screen hero */}
+        <div className={styles.heroScrollIndicator}>
+          <span>SCROLL TO EXPLORE</span>
+          <span className={styles.heroScrollArrow}>↓</span>
+        </div>
       </section>
 
-      <section className="section">
+      {/* Main Portfolio Section as Card Stack Overlay */}
+      <section className={`${styles.stackOverlay} section`}>
         <div className="container">
           <FadeIn y={30}>
             <h2 className={styles.introStatement} style={{ marginBottom: "50px" }}>
@@ -130,7 +146,7 @@ export default function Page() {
                       <ul className={styles.serviceList}>
                         {service.items.map((item, itemIdx) => (
                           <li key={itemIdx}>
-                            <span>•</span>
+                            <span>—</span>
                             <div>{item}</div>
                           </li>
                         ))}

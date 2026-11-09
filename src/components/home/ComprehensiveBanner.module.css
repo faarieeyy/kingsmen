@@ -1,0 +1,178 @@
+.bannerSection {
+  position: relative;
+  width: 100%;
+  min-height: 640px;
+  background-color: #05152c;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 1200px) {
+  .bannerSection {
+    min-height: 700px;
+    aspect-ratio: 16 / 9;
+    max-height: 920px;
+  }
+}
+
+/* Background image wrapper with smooth scale transition */
+.bgWrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bgImage {
+  object-fit: cover;
+  object-position: center right;
+}
+
+/* Animated curtain veil that sweeps across the blend to reveal the photo */
+.blendCurtain {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 60%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    #05152c 0%,
+    rgba(5, 21, 44, 0.95) 20%,
+    rgba(5, 21, 44, 0.7) 50%,
+    rgba(5, 21, 44, 0.25) 100%
+  );
+  transform-origin: right center;
+}
+
+/* Luminous subtle light sweep gliding along the blend boundary */
+.blendGlow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 140px;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 162, 39, 0.12) 35%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(201, 162, 39, 0.12) 65%,
+    transparent 100%
+  );
+  filter: blur(20px);
+}
+
+/* Subtle overlay on smaller viewports */
+.mobileOverlay {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .mobileOverlay {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(
+      to right,
+      rgba(5, 21, 44, 0.96) 0%,
+      rgba(5, 21, 44, 0.88) 55%,
+      rgba(5, 21, 44, 0.35) 100%
+    );
+    pointer-events: none;
+  }
+}
+
+.contentContainer {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.textContent {
+  width: 100%;
+  max-width: 530px;
+}
+
+@media (min-width: 1400px) {
+  .textContent {
+    max-width: 570px;
+  }
+}
+
+.goldDivider {
+  width: 54px;
+  height: 2px;
+  background: linear-gradient(90deg, #c9a227 0%, rgba(201, 162, 39, 0) 100%);
+  margin-bottom: 22px;
+}
+
+.headline {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: clamp(2rem, 3.4vw, 3.4rem);
+  line-height: 1.18;
+  color: #ffffff;
+  margin-bottom: clamp(14px, 2vw, 20px);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
+}
+
+.desktopBr {
+  display: block;
+}
+
+.bodyCopy {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: clamp(0.95rem, 1.1vw, 1.12rem);
+  line-height: 1.72;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: clamp(14px, 1.8vw, 20px);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+.bodyCopy:last-of-type {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .bannerSection {
+    min-height: auto;
+    padding: 70px 0;
+  }
+
+  .contentContainer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .textContent {
+    max-width: 100%;
+  }
+
+  .desktopBr {
+    display: inline;
+  }
+
+  .headline {
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+  }
+
+  .bodyCopy {
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+}

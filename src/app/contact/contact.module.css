@@ -1,9 +1,18 @@
-/* Contact Query Panel Form */
+/* Contact Query Panel Form with Floating Lift */
 .queryPanel {
   background: rgba(8, 20, 44, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-md);
   padding: 32px 28px;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.45s ease,
+              border-color 0.4s ease;
+}
+
+.queryPanel:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 215, 0, 0.35);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 215, 0, 0.15);
 }
 
 @media (max-width: 600px) {
@@ -93,11 +102,18 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .querySubmitBtn:hover {
-  opacity: 0.9;
+  transform: translateY(-3px) scale(1.01);
+  background: #FFE55C;
+  box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
+}
+
+.querySubmitBtn:active {
+  transform: translateY(-1px);
 }
 
 .querySuccess {
@@ -111,30 +127,40 @@
   text-align: center;
 }
 
-/* Leadership Contact Cards with Photo Avatars */
+/* Leadership Contact Cards with Photo Avatars & Floating Effect */
 .contactCardItem {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 12px 14px;
-  background: rgba(8, 20, 44, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  transition: border-color 0.2s ease;
+  padding: 14px 16px;
+  background: rgba(8, 20, 44, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease,
+              box-shadow 0.4s ease;
 }
 
 .contactCardItem:hover {
-  border-color: rgba(255, 215, 0, 0.3);
+  transform: translateY(-6px) scale(1.015);
+  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), 0 0 25px rgba(255, 215, 0, 0.2);
 }
 
 .contactAvatar {
   position: relative;
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid #FFD700;
   flex-shrink: 0;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.contactCardItem:hover .contactAvatar {
+  transform: scale(1.1) rotate(2deg);
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.6);
 }
 
 .contactInfo {
