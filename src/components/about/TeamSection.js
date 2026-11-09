@@ -19,19 +19,22 @@ const teamMembers = [
 
 export default function TeamSection({ showHeader = true }) {
   return (
-    <section className="section" style={{ backgroundColor: 'var(--navy-midnight)' }}>
+    <section className={`section ${styles.teamSection}`}>
       <div className="container">
         {showHeader && (
           <div className={styles.header}>
             <FadeIn y={20}>
-              <h2 className={styles.title}>Our Team.</h2>
+              <span className={styles.subtitle}>LEADERSHIP & FIELD COMMAND</span>
+              <h2 className={styles.title} style={{ marginTop: "6px" }}>
+                OUR <span>TEAM.</span>
+              </h2>
             </FadeIn>
           </div>
         )}
 
         <div className={styles.grid}>
           {teamMembers.map((member, idx) => (
-            <FadeIn key={idx} delay={0.08 * (idx % 3)} y={30} className={styles.cardWrapper}>
+            <FadeIn key={idx} delay={0.06 * (idx % 3)} y={25} className={styles.cardWrapper}>
               <div className={styles.card}>
                 <div className={styles.imageContainer}>
                   <Image 
