@@ -1,0 +1,190 @@
+.footer {
+  background-color: var(--navy-midnight, #08142c);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 10;
+  padding: 50px 0 24px 0;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+@media (min-width: 640px) {
+  .footerGrid {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 36px;
+  }
+}
+
+@media (min-width: 960px) {
+  .footerGrid {
+    grid-template-columns: 1.8fr 1fr 1fr 1.3fr;
+    gap: 40px;
+  }
+}
+
+.brandCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--white);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.goldLogo {
+  color: var(--accent);
+}
+
+.brandDesc {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 12px;
+  max-width: 320px;
+}
+
+.complianceBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.complianceDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.columnTitle {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  letter-spacing: 1.6px;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.linkItem {
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+  width: fit-content;
+}
+
+.linkItem:hover {
+  color: var(--white);
+  transform: translateX(2px);
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contactItem {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.contactRole {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.contactLink {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.84rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.contactLink:hover {
+  color: var(--accent);
+}
+
+.whatsappBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 14px;
+  margin-top: 6px;
+  background: rgba(37, 211, 102, 0.12);
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  color: #25D366;
+  border-radius: var(--radius-sm, 6px);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  width: fit-content;
+  transition: all 0.2s ease;
+}
+
+.whatsappBtn:hover {
+  background: #25D366;
+  color: #030b18;
+}
+
+.bottomBar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+@media (min-width: 768px) {
+  .bottomBar {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 36px 0 20px 0;
+  }
+
+  .footerGrid {
+    gap: 24px;
+    padding-bottom: 22px;
+  }
+}

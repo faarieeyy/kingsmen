@@ -1,37 +1,106 @@
 import Link from "next/link";
+import styles from "./Footer.module.css";
 
 export default function Footer() {
   return (
-    <footer className="footer section">
+    <footer className={styles.footer}>
       <div className="container">
-        <div className="footer-grid">
-          <div className="footer-brand">
-            <h2 className="footer-logo">KINGSMEN</h2>
-            <p className="footer-desc">
+        <div className={styles.footerGrid}>
+          {/* Brand Info */}
+          <div className={styles.brandCol}>
+            <div className={styles.logo}>
+              KINGSMEN <span className={styles.goldLogo}>SECURITY</span>
+            </div>
+            <p className={styles.brandDesc}>
               KINGSMEN (IND) SERVICES PRIVATE LIMITED
-              <br /><br />
-              Professional Security & Facility Management Services.
+              <br />
+              Professional Security & Integrated Facility Management Services in Bangalore.
             </p>
+            <div className={styles.complianceBadge}>
+              <span className={styles.complianceDot} />
+              <span>PSARA Certified & ISO Compliant</span>
+            </div>
           </div>
-          
-          <div className="footer-links">
-            <h3>Navigation</h3>
-            <Link href="/services">Services</Link>
-            <Link href="/industries">Industries</Link>
-            <Link href="/about-us">About</Link>
-            <Link href="/team">Team</Link>
-            <Link href="/contact">Contact</Link>
-            <Link href="/privacy-policy">Privacy Policy</Link>
-            <Link href="/terms">Terms</Link>
-            <Link href="/sitemap.xml">Sitemap</Link>
+
+          {/* Core Navigation */}
+          <div>
+            <h3 className={styles.columnTitle}>Navigation</h3>
+            <ul className={styles.linkList}>
+              <li>
+                <Link href="/services" className={styles.linkItem}>Our Services</Link>
+              </li>
+              <li>
+                <Link href="/industries" className={styles.linkItem}>Industries Served</Link>
+              </li>
+              <li>
+                <Link href="/about-us" className={styles.linkItem}>About Kingsmen</Link>
+              </li>
+              <li>
+                <Link href="/team" className={styles.linkItem}>Leadership & Team</Link>
+              </li>
+              <li>
+                <Link href="/contact" className={styles.linkItem}>Contact Us</Link>
+              </li>
+            </ul>
           </div>
-          
-          <div className="footer-contact">
-            <h3>Contact Us</h3>
-            <p>Suresh P, CEO: +91 80882 64187</p>
-            <p>Tushar Sunny, MD: +91 9916107029</p>
-            <p>Cleny Shynu, HR: +91 97312 64348</p>
-            <a href="https://wa.me/919916107029" className="whatsapp-link">WhatsApp</a>
+
+          {/* Legal & Audit */}
+          <div>
+            <h3 className={styles.columnTitle}>Information</h3>
+            <ul className={styles.linkList}>
+              <li>
+                <Link href="/security-audit-bangalore" className={styles.linkItem}>Request Site Audit</Link>
+              </li>
+              <li>
+                <Link href="/case-studies" className={styles.linkItem}>Case Studies</Link>
+              </li>
+              <li>
+                <Link href="/privacy-policy" className={styles.linkItem}>Privacy Policy</Link>
+              </li>
+              <li>
+                <Link href="/terms" className={styles.linkItem}>Terms of Service</Link>
+              </li>
+              <li>
+                <Link href="/sitemap.xml" className={styles.linkItem}>XML Sitemap</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Direct Leadership Contacts */}
+          <div>
+            <h3 className={styles.columnTitle}>Direct Contacts</h3>
+            <div className={styles.contactList}>
+              <div className={styles.contactItem}>
+                <span className={styles.contactRole}>Suresh P • CEO (Ex-Air Force)</span>
+                <a href="tel:+918088264187" className={styles.contactLink}>+91 80882 64187</a>
+              </div>
+              <div className={styles.contactItem}>
+                <span className={styles.contactRole}>Tushar Sunny • Managing Director</span>
+                <a href="tel:+919916107029" className={styles.contactLink}>+91 99161 07029</a>
+              </div>
+              <div className={styles.contactItem}>
+                <span className={styles.contactRole}>Operations & HR Desk</span>
+                <a href="tel:+919731264348" className={styles.contactLink}>+91 97312 64348</a>
+              </div>
+              <a
+                href="https://wa.me/919916107029"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.whatsappBtn}
+              >
+                <span>💬 Chat on WhatsApp</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Compact Standard Bottom Bar */}
+        <div className={styles.bottomBar}>
+          <div>
+            © {new Date().getFullYear()} Kingsmen (IND) Services Private Limited. All rights reserved.
+          </div>
+          <div>
+            Bangalore, Karnataka • 24/7 Command Center
           </div>
         </div>
       </div>
