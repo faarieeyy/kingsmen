@@ -8,14 +8,14 @@
   justify-content: space-between;
   overflow: hidden;
   background-color: var(--navy-deep);
-  padding: 130px 0 0 0;
+  padding: 110px 0 0 0;
   box-sizing: border-box;
 }
 
-/* Background image container with smooth parallax */
+/* 3D Depth Parallax Background Image Container */
 .bgWrapper {
   position: absolute;
-  inset: -10% 0 -10% 0; /* Extra overflow for smooth parallax drift */
+  inset: -10% 0 -10% 0;
   width: 100%;
   height: 120%;
   z-index: 1;
@@ -23,72 +23,70 @@
   will-change: transform;
 }
 
+/* Shows the guards in full sharpness without cropping or obstruction */
 .bgImage {
   object-fit: cover;
-  object-position: center 38%;
+  object-position: center 68%;
 }
 
-/* Sophisticated multi-layer vignette and atmospheric lighting */
+/* Crystal-clear ambient lighting: keeps authentic photography fully bright & visible */
 .ambientGradient {
   position: absolute;
   inset: 0;
   z-index: 2;
   background: 
-    /* Left side text contrast veil */
-    linear-gradient(
-      90deg,
-      rgba(3, 11, 24, 0.88) 0%,
-      rgba(3, 11, 24, 0.65) 42%,
-      rgba(3, 11, 24, 0.25) 75%,
-      rgba(3, 11, 24, 0.1) 100%
-    ),
-    /* Top navbar scrim */
+    /* Delicate top navbar scrim for navbar link legibility */
     linear-gradient(
       180deg,
-      rgba(3, 11, 24, 0.85) 0%,
-      rgba(3, 11, 24, 0.2) 25%,
-      transparent 50%
+      rgba(3, 11, 24, 0.65) 0%,
+      rgba(3, 11, 24, 0.15) 16%,
+      transparent 32%
     ),
-    /* Bottom atmospheric fade seamlessly into midnight navy */
+    /* Soft bottom fade to smoothly transition into the sector showcase */
     linear-gradient(
       180deg,
-      transparent 45%,
-      rgba(3, 11, 24, 0.7) 75%,
+      transparent 65%,
+      rgba(3, 11, 24, 0.5) 85%,
       var(--navy-midnight) 100%
     );
   pointer-events: none;
 }
 
-/* Dynamic darkening overlay controlled by scroll */
+/* Scroll-driven veil: completely transparent at top (0%), only dims slightly when scrolling down */
 .dynamicVeil {
   position: absolute;
   inset: 0;
   z-index: 3;
-  background: radial-gradient(
-    circle at 50% 60%,
-    rgba(3, 11, 24, 0.2) 0%,
-    rgba(3, 11, 24, 0.8) 100%
-  );
+  background: rgba(3, 11, 24, 0.7);
   pointer-events: none;
   will-change: opacity;
 }
 
-/* Hero Content Area */
+/* Content Container: Aligned to upper portion so guards in the lower half remain 100% unobstructed */
 .contentContainer {
   position: relative;
   z-index: 5;
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 40px 24px;
+  padding: 20px 24px 20px 24px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   flex: 1;
 }
 
-.heroContent {
-  max-width: 820px;
+/* Compact, luxury glass card for hero copy: provides razor-sharp text legibility 
+   without darkening or cluttering the rest of the photo */
+.heroCard {
+  max-width: 580px;
+  background: rgba(5, 16, 36, 0.62);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  padding: 28px 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.18);
   will-change: transform, opacity;
 }
 
@@ -96,20 +94,17 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 7px 18px;
-  background: rgba(212, 175, 55, 0.12);
-  border: 1px solid rgba(212, 175, 55, 0.35);
+  padding: 6px 14px;
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.4);
   border-radius: 999px;
   color: var(--accent);
   font-family: var(--font-heading);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 20px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  margin-bottom: 14px;
 }
 
 .eyebrowDot {
@@ -128,14 +123,14 @@
 
 .headline {
   font-family: var(--font-heading);
-  font-size: clamp(2.8rem, 5.5vw, 4.6rem);
+  font-size: clamp(2.2rem, 4.2vw, 3.4rem);
   font-weight: 900;
-  line-height: 1.08;
-  letter-spacing: -0.02em;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
   color: var(--white);
   text-transform: uppercase;
-  margin: 0 0 20px 0;
-  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  margin: 0 0 12px 0;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
 .goldText {
@@ -144,66 +139,63 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
-  filter: drop-shadow(0 4px 15px rgba(212, 175, 55, 0.3));
+  filter: drop-shadow(0 2px 10px rgba(212, 175, 55, 0.35));
 }
 
 .supportCopy {
-  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-  color: rgba(255, 255, 255, 0.88);
-  line-height: 1.65;
-  max-width: 680px;
-  margin-bottom: 32px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  font-size: 0.98rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.55;
+  margin: 0 0 22px 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .ctaGroup {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .heroBtn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 16px 34px;
+  gap: 8px;
+  padding: 13px 26px;
   background: linear-gradient(135deg, var(--accent) 0%, #b8860b 100%);
   color: #030b18;
   font-family: var(--font-heading);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   border-radius: var(--radius-sm);
   text-decoration: none;
-  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.35);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35);
   transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .heroBtn:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 14px 35px rgba(212, 175, 55, 0.5);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(212, 175, 55, 0.5);
   background: linear-gradient(135deg, #f0c952 0%, var(--accent) 100%);
 }
 
 .heroBtnSecondary {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 15px 28px;
+  gap: 6px;
+  padding: 12px 20px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: var(--white);
   font-family: var(--font-heading);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
   border-radius: var(--radius-sm);
   text-decoration: none;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   transition: all 0.3s ease;
 }
 
@@ -221,20 +213,20 @@
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 24px 36px 24px;
+  padding: 0 24px 28px 24px;
 }
 
 .dockContainer {
-  background: rgba(5, 16, 36, 0.82);
+  background: rgba(5, 16, 36, 0.78);
   border: 1px solid rgba(212, 175, 55, 0.25);
-  border-radius: 20px;
-  padding: 14px 20px;
+  border-radius: 18px;
+  padding: 12px 18px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -245,7 +237,7 @@
 
 .dockTitle {
   font-family: var(--font-heading);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   letter-spacing: 2px;
   font-weight: 800;
   color: var(--accent);
@@ -261,7 +253,7 @@
 .dockPills {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: nowrap;
 }
 
@@ -269,12 +261,12 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 16px;
+  padding: 7px 14px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 0.82rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.8rem;
   font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
@@ -282,7 +274,7 @@
 }
 
 .dockPill:hover {
-  background: rgba(212, 175, 55, 0.15);
+  background: rgba(212, 175, 55, 0.18);
   border-color: rgba(212, 175, 55, 0.5);
   color: var(--white);
   transform: translateY(-2px);
@@ -301,7 +293,7 @@
   opacity: 1;
 }
 
-/* Elegant illuminated transition horizon */
+/* Glowing gold horizon seam */
 .transitionHorizon {
   position: absolute;
   bottom: 0;
@@ -320,7 +312,6 @@
   z-index: 6;
 }
 
-/* Ambient glow cone shining down into the sector section */
 .ambientCone {
   position: absolute;
   bottom: -40px;
@@ -341,38 +332,44 @@
 @media (max-width: 768px) {
   .heroSection {
     min-height: auto;
-    padding: 110px 0 0 0;
+    padding: 95px 0 0 0;
   }
 
   .contentContainer {
-    padding: 24px 20px 40px 20px;
+    padding: 16px 16px 24px 16px;
+  }
+
+  .heroCard {
+    padding: 22px 20px;
+    border-radius: 18px;
+    max-width: 100%;
   }
 
   .headline {
-    font-size: 2.4rem;
+    font-size: 2.1rem;
   }
 
   .supportCopy {
-    font-size: 1rem;
-    line-height: 1.55;
-    margin-bottom: 24px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin-bottom: 18px;
   }
 
   .dockWrapper {
-    padding: 0 16px 24px 16px;
+    padding: 0 16px 20px 16px;
   }
 
   .dockTitle {
-    display: none; /* Hide label on mobile to give full room to pill slider */
+    display: none;
   }
 
   .dockContainer {
-    padding: 10px 14px;
+    padding: 8px 12px;
     border-radius: 14px;
   }
 
   .dockPill {
     padding: 6px 12px;
-    font-size: 0.78rem;
+    font-size: 0.76rem;
   }
 }
