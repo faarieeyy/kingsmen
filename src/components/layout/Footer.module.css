@@ -3,29 +3,29 @@
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
   z-index: 10;
-  padding: 50px 0 24px 0;
-  color: rgba(255, 255, 255, 0.75);
+  padding: 85px 0 35px 0;
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .footerGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 32px;
-  padding-bottom: 30px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  gap: 40px;
+  padding-bottom: 45px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 @media (min-width: 640px) {
   .footerGrid {
-    grid-template-columns: 1.2fr 1fr;
-    gap: 36px;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 44px;
   }
 }
 
 @media (min-width: 960px) {
   .footerGrid {
-    grid-template-columns: 1.8fr 1fr 1fr 1.3fr;
-    gap: 40px;
+    grid-template-columns: 2fr 1.1fr 1.1fr 1.4fr;
+    gap: 48px;
   }
 }
 
@@ -36,12 +36,13 @@
 
 .logo {
   font-family: var(--font-heading);
-  font-size: 1.3rem;
+  font-size: 1.75rem;
   font-weight: 800;
   letter-spacing: 2px;
   color: var(--white);
-  margin-bottom: 8px;
+  margin-bottom: 14px;
   text-transform: uppercase;
+  line-height: 1.2;
 }
 
 .goldLogo {
@@ -49,53 +50,54 @@
 }
 
 .brandDesc {
-  font-size: 0.85rem;
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.65);
-  margin-bottom: 12px;
-  max-width: 320px;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 18px;
+  max-width: 360px;
 }
 
 .complianceBadge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.74rem;
+  gap: 8px;
+  font-size: 0.82rem;
   color: var(--accent);
   font-weight: 600;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
 }
 
 .complianceDot {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
 }
 
 .columnTitle {
   font-family: var(--font-heading);
-  font-size: 0.78rem;
-  letter-spacing: 1.6px;
+  font-size: 0.92rem;
+  letter-spacing: 2px;
   font-weight: 700;
   color: var(--accent);
   text-transform: uppercase;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 }
 
 .linkList {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 12px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .linkItem {
-  font-size: 0.84rem;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.78);
   text-decoration: none;
   transition: color 0.2s ease, transform 0.2s ease;
   display: inline-block;
@@ -104,33 +106,33 @@
 
 .linkItem:hover {
   color: var(--white);
-  transform: translateX(2px);
+  transform: translateX(4px);
 }
 
 .contactList {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 14px;
 }
 
 .contactItem {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 3px;
 }
 
 .contactRole {
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
   text-transform: uppercase;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.5px;
 }
 
 .contactLink {
-  color: rgba(255, 255, 255, 0.88);
-  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.96rem;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   transition: color 0.2s ease;
 }
 
@@ -142,34 +144,36 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 6px 14px;
-  margin-top: 6px;
-  background: rgba(37, 211, 102, 0.12);
-  border: 1px solid rgba(37, 211, 102, 0.3);
+  gap: 8px;
+  padding: 10px 20px;
+  margin-top: 8px;
+  background: rgba(37, 211, 102, 0.14);
+  border: 1px solid rgba(37, 211, 102, 0.35);
   color: #25D366;
-  border-radius: var(--radius-sm, 6px);
-  font-size: 0.78rem;
+  border-radius: var(--radius-sm, 8px);
+  font-size: 0.88rem;
   font-weight: 700;
   text-decoration: none;
   width: fit-content;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .whatsappBtn:hover {
   background: #25D366;
   color: #030b18;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
 }
 
 .bottomBar {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
   justify-content: space-between;
-  padding-top: 20px;
-  font-size: 0.76rem;
-  color: rgba(255, 255, 255, 0.45);
+  padding-top: 28px;
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.55);
 }
 
 @media (min-width: 768px) {
@@ -180,12 +184,15 @@
 
 @media (max-width: 768px) {
   .footer {
-    padding: 36px 0 20px 0;
+    padding: 60px 0 30px 0;
   }
 
   .footerGrid {
-    gap: 24px;
-    padding-bottom: 22px;
+    gap: 32px;
+    padding-bottom: 30px;
+  }
+
+  .logo {
+    font-size: 1.5rem;
   }
 }
-
