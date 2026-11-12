@@ -121,8 +121,11 @@ export default function HeroVideoScroll() {
 
     const loadSingleImage = (index) => {
       const img = new Image();
+      if (index === 0) {
+        img.fetchPriority = "high";
+      }
       const numStr = String(index).padStart(4, "0");
-      img.src = `${folder}/frame_${numStr}.webp`;
+      img.src = `${folder}/frame_${numStr}.webp?v=4k_v2`;
 
       img.onload = () => {
         if (!active) return;
