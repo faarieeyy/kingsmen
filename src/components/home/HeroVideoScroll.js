@@ -10,8 +10,6 @@ export default function HeroVideoScroll() {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const imagesRef = useRef([]);
-  const [loadedCount, setLoadedCount] = useState(0);
-  const [isReady, setIsReady] = useState(false);
   const [isMobileDevice, setIsMobileDevice] = useState(false);
 
   const { scrollYProgress } = useScroll({
@@ -117,28 +115,20 @@ export default function HeroVideoScroll() {
     };
     resizeCanvas();
 
-    let loadedCountLocal = 0;
-
     const loadSingleImage = (index) => {
       const img = new Image();
       if (index === 0) {
         img.fetchPriority = "high";
       }
       const numStr = String(index).padStart(4, "0");
-      img.src = `${folder}/frame_${numStr}.webp?v=4k_v2`;
+      img.src = `${folder}/frame_${numStr}.webp?v=4k_master`;
 
       img.onload = () => {
         if (!active) return;
         images[index] = img;
-        loadedCountLocal++;
-        setLoadedCount(loadedCountLocal);
 
         if (index === 0 && canvasRef.current) {
           drawFrame(img);
-        }
-
-        if (loadedCountLocal >= 15) {
-          setIsReady(true);
         }
       };
 
