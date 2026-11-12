@@ -1,6 +1,6 @@
 "use client";
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./IndustriesHero.module.css";
@@ -18,29 +18,22 @@ const sectorPills = [
 export default function IndustriesHero() {
   const containerRef = useRef(null);
 
-  // Track scroll position through the hero section
+  // Track scroll position through the hero section directly in sync with Lenis
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
 
-  // Soft spring inertia smoothing
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 28,
-    restDelta: 0.001,
-  });
-
   // Parallax transform for the authentic photo
-  const bgY = useTransform(smoothProgress, [0, 1], ["0%", "18%"]);
-  const bgScale = useTransform(smoothProgress, [0, 1], [1, 1.1]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
   // Clean fade-out and upward lift for hero copy — dissolves BEFORE user reaches sector section
-  const contentOpacity = useTransform(smoothProgress, [0, 0.45], [1, 0]);
-  const contentY = useTransform(smoothProgress, [0, 0.45], [0, -40]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.45], [1, 0]);
+  const contentY = useTransform(scrollYProgress, [0, 0.45], [0, -40]);
 
   // Dynamic atmospheric veil that gently intensifies on scroll
-  const dynamicVeilOpacity = useTransform(smoothProgress, [0, 0.7], [0, 0.75]);
+  const dynamicVeilOpacity = useTransform(scrollYProgress, [0, 0.7], [0, 0.75]);
 
   // Smooth scroll handler for quick navigation pills using Lenis
   const handlePillClick = (e, id) => {

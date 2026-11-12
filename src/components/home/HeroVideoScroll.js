@@ -1,6 +1,6 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useEffect, useRef, useState, useCallback } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import styles from "./HeroVideoScroll.module.css";
 
@@ -12,36 +12,31 @@ export default function HeroVideoScroll() {
   const imagesRef = useRef([]);
   const [loadedCount, setLoadedCount] = useState(0);
   const [isReady, setIsReady] = useState(false);
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // Soft physics spring to remove any stepping or micro-jitter when scrolling
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 110,
-    damping: 28,
-    restDelta: 0.0008,
-  });
-
-  // Map smooth scroll 0 -> 0.72 to video playback from frame 0 -> TOTAL_FRAMES - 1
-  const frameIndexMotion = useTransform(smoothProgress, [0, 0.72], [0, TOTAL_FRAMES - 1], {
+  // Direct 1:1 mapping with Lenis smooth scroll progress
+  // Plays smoothly through all 181 frames over 0 -> 0.72 of the scroll track
+  const frameIndexMotion = useTransform(scrollYProgress, [0, 0.72], [0, TOTAL_FRAMES - 1], {
     clamp: true,
   });
 
-  // Video overlay gradient is 0% during playback (completely transparent, exact video colors).
-  const overlayOpacity = useTransform(smoothProgress, [0.72, 0.82], [0, 0.85]);
+  // Video overlay gradient: completely transparent during playback, fades in as video concludes
+  const overlayOpacity = useTransform(scrollYProgress, [0.72, 0.82], [0, 0.85]);
 
-  // Main brand content ONLY fades in after the video has finished playing
-  const contentOpacity = useTransform(smoothProgress, [0.74, 0.84, 1], [0, 1, 1]);
-  const contentY = useTransform(smoothProgress, [0.74, 0.84], ["40px", "0px"]);
+  // Main brand content fades in seamlessly once video playback has finished
+  const contentOpacity = useTransform(scrollYProgress, [0.74, 0.84, 1], [0, 1, 1]);
+  const contentY = useTransform(scrollYProgress, [0.74, 0.84], ["35px", "0px"]);
 
-  // Render a specific frame image onto the canvas with cover-fit and image smoothing enabled
-  const drawFrame = (img) => {
+  // Render a frame image onto the canvas with crisp high-DPR cover-fit
+  const drawFrame = useCallback((img) => {
     const canvas = canvasRef.current;
-    if (!canvas || !img || !img.complete) return;
-    const ctx = canvas.getContext("2d");
+    if (!canvas || !img || !img.complete || !img.naturalWidth) return;
+    const ctx = canvas.getContext("2d", { alpha: false });
     if (!ctx) return;
 
     ctx.imageSmoothingEnabled = true;
@@ -49,25 +44,47 @@ export default function HeroVideoScroll() {
 
     const cw = canvas.width;
     const ch = canvas.height;
-    const iw = img.naturalWidth || img.width;
-    const ih = img.naturalHeight || img.height;
+    const iw = img.naturalWidth;
+    const ih = img.naturalHeight;
 
     if (!iw || !ih) return;
 
-    // Precise cover algorithm keeping original aspect ratio
+    // Cover math preserving aspect ratio
     const scale = Math.max(cw / iw, ch / ih);
     const nw = iw * scale;
     const nh = ih * scale;
     const nx = Math.round((cw - nw) / 2);
     const ny = Math.round((ch - nh) / 2);
 
-    ctx.clearRect(0, 0, cw, ch);
     ctx.drawImage(img, nx, ny, nw, nh);
-  };
+  }, []);
 
-  // Preload frames based on current device aspect ratio (Desktop vs Mobile)
-  const [isMobileDevice, setIsMobileDevice] = useState(false);
+  // Helper to get target frame or closest loaded neighbor to prevent any freeze/skip
+  const getBestFrame = useCallback((targetIdx) => {
+    const images = imagesRef.current;
+    if (!images || !images.length) return null;
 
+    // 1. Exact frame match if complete
+    if (images[targetIdx]?.complete && images[targetIdx]?.naturalWidth > 0) {
+      return images[targetIdx];
+    }
+
+    // 2. Search backward first (natural continuity), then forward
+    for (let offset = 1; offset < 30; offset++) {
+      const prev = targetIdx - offset;
+      if (prev >= 0 && images[prev]?.complete && images[prev]?.naturalWidth > 0) {
+        return images[prev];
+      }
+      const next = targetIdx + offset;
+      if (next < TOTAL_FRAMES && images[next]?.complete && images[next]?.naturalWidth > 0) {
+        return images[next];
+      }
+    }
+
+    return images[0]?.complete ? images[0] : null;
+  }, []);
+
+  // Detect mobile device
   useEffect(() => {
     const checkMobile = () => {
       setIsMobileDevice(window.innerWidth <= 768);
@@ -77,52 +94,68 @@ export default function HeroVideoScroll() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  // Preload frames with prioritized 2-phase loading (keyframes first for instant readiness)
   useEffect(() => {
     let active = true;
     const folder = isMobileDevice ? "/hero-frames-mobile" : "/hero-frames";
-    const images = [];
+    const images = new Array(TOTAL_FRAMES);
     imagesRef.current = images;
 
-    // Resize canvas to internal display buffer
+    // Canvas buffer sizing
     const resizeCanvas = () => {
       if (canvasRef.current) {
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
         canvasRef.current.width = window.innerWidth * dpr;
         canvasRef.current.height = window.innerHeight * dpr;
-        
-        // Re-draw current frame
+
         const currentIdx = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(frameIndexMotion.get())));
-        const currentImg = imagesRef.current[currentIdx] || imagesRef.current[0];
-        if (currentImg && currentImg.complete) {
-          drawFrame(currentImg);
+        const bestImg = getBestFrame(currentIdx);
+        if (bestImg) {
+          drawFrame(bestImg);
         }
       }
     };
     resizeCanvas();
 
-    let loaded = 0;
-    for (let i = 0; i < TOTAL_FRAMES; i++) {
+    let loadedCountLocal = 0;
+
+    const loadSingleImage = (index) => {
       const img = new Image();
-      const numStr = String(i).padStart(4, "0");
+      const numStr = String(index).padStart(4, "0");
       img.src = `${folder}/frame_${numStr}.webp`;
 
       img.onload = () => {
         if (!active) return;
-        loaded++;
-        setLoadedCount(loaded);
+        images[index] = img;
+        loadedCountLocal++;
+        setLoadedCount(loadedCountLocal);
 
-        // Draw initial frame as soon as frame 0 loads
-        if (i === 0 && canvasRef.current) {
+        if (index === 0 && canvasRef.current) {
           drawFrame(img);
         }
 
-        if (loaded >= Math.min(25, TOTAL_FRAMES)) {
+        if (loadedCountLocal >= 15) {
           setIsReady(true);
         }
       };
 
-      images.push(img);
+      images[index] = img;
+    };
+
+    // Phase 1: Load every 4th keyframe first (fast scrub coverage in <400ms)
+    for (let i = 0; i < TOTAL_FRAMES; i += 4) {
+      loadSingleImage(i);
     }
+
+    // Phase 2: Immediately fill in all intermediate frames
+    const phase2Timer = setTimeout(() => {
+      if (!active) return;
+      for (let i = 0; i < TOTAL_FRAMES; i++) {
+        if (i % 4 !== 0) {
+          loadSingleImage(i);
+        }
+      }
+    }, 50);
 
     const handleResize = () => {
       resizeCanvas();
@@ -132,44 +165,56 @@ export default function HeroVideoScroll() {
 
     return () => {
       active = false;
+      clearTimeout(phase2Timer);
       window.removeEventListener("resize", handleResize);
     };
-  }, [isMobileDevice]);
+  }, [isMobileDevice, drawFrame, getBestFrame, frameIndexMotion]);
 
-  // Update canvas on scroll with requestAnimationFrame and frame index deduplication
+  // Synchronized RAF render loop directly driven by Lenis and scroll updates
   useEffect(() => {
-    let animationFrameId = null;
+    let rafId = null;
     let lastRenderedIdx = -1;
 
-    const unsubscribe = frameIndexMotion.on("change", (latest) => {
-      const frameIdx = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(latest)));
-      if (frameIdx === lastRenderedIdx) return;
-
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
-
-      animationFrameId = requestAnimationFrame(() => {
-        lastRenderedIdx = frameIdx;
-        const img = imagesRef.current[frameIdx];
-        if (img && img.complete) {
+    const renderCurrentFrame = () => {
+      const frameIdx = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(frameIndexMotion.get())));
+      if (frameIdx !== lastRenderedIdx) {
+        const img = getBestFrame(frameIdx);
+        if (img) {
           drawFrame(img);
+          lastRenderedIdx = frameIdx;
         }
-      });
-    });
+      }
+      rafId = null;
+    };
+
+    const scheduleRender = () => {
+      if (!rafId) {
+        rafId = requestAnimationFrame(renderCurrentFrame);
+      }
+    };
+
+    const unsubscribe = frameIndexMotion.on("change", scheduleRender);
+
+    // Sync directly with Lenis scroll ticks for zero-latency frame scrubbing
+    if (typeof window !== "undefined" && window.lenis) {
+      window.lenis.on("scroll", scheduleRender);
+    }
 
     return () => {
       unsubscribe();
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
+      if (typeof window !== "undefined" && window.lenis) {
+        window.lenis.off("scroll", scheduleRender);
+      }
+      if (rafId) {
+        cancelAnimationFrame(rafId);
       }
     };
-  }, [frameIndexMotion]);
+  }, [frameIndexMotion, getBestFrame, drawFrame]);
 
   return (
     <div className={styles.wrapper} ref={containerRef}>
       <div className={styles.stickyContainer}>
-        {/* Canvas background for silky frame scrubbing */}
+        {/* Canvas background for hardware-accelerated frame scrubbing */}
         <canvas ref={canvasRef} className={styles.canvas} />
 
         {/* Ambient aesthetic gradients for cinematic feel - only darkens after video finishes */}

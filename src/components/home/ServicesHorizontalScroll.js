@@ -1,6 +1,6 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./ServicesHorizontalScroll.module.css";
@@ -133,14 +133,7 @@ export default function ServicesHorizontalScroll() {
     offset: ["start start", "end end"]
   });
 
-  // Inertia spring smoothing for liquid horizontal slide
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 90,
-    damping: 24,
-    restDelta: 0.001
-  });
-
-  const x = useTransform(smoothProgress, [0, 1], [0, -scrollRange]);
+  const x = useTransform(scrollYProgress, [0, 1], [0, -scrollRange]);
 
   const handleCardClick = (idx, e) => {
     // On touch devices: first tap toggles details open, second tap navigates

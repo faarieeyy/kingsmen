@@ -7,15 +7,13 @@ export default function SmoothScrollProvider({ children }) {
   const lenisRef = useRef(null);
 
   useEffect(() => {
-    // Premium cinematic smooth scroll configuration
+    // Ultra-smooth, responsive linear interpolation (lerp)
+    // lerp: 0.09 gives immediate wheel response with luxurious, natural deceleration
     const lenis = new Lenis({
-      duration: 1.25,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Silky exponential deceleration curve
-      orientation: "vertical",
-      gestureOrientation: "vertical",
+      lerp: 0.09,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.2,
       smoothWheel: true,
-      wheelMultiplier: 1.0, // Natural 1:1 wheel sensitivity (not sluggish)
-      touchMultiplier: 1.3,
       infinite: false,
       autoResize: true,
     });
