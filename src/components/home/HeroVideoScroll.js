@@ -101,12 +101,12 @@ export default function HeroVideoScroll() {
     const images = new Array(TOTAL_FRAMES);
     imagesRef.current = images;
 
-    // Canvas buffer sizing
+    // Canvas buffer sizing with up to 2.5x DPR for Retina / 2K / 4K fidelity
     const resizeCanvas = () => {
       if (canvasRef.current) {
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        canvasRef.current.width = window.innerWidth * dpr;
-        canvasRef.current.height = window.innerHeight * dpr;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+        canvasRef.current.width = Math.round(window.innerWidth * dpr);
+        canvasRef.current.height = Math.round(window.innerHeight * dpr);
 
         const currentIdx = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(frameIndexMotion.get())));
         const bestImg = getBestFrame(currentIdx);
